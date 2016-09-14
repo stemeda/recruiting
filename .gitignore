@@ -1,0 +1,9 @@
+/vendor/*
+/config/app.php
+/tmp/*
+/logs/*
+webroot/fonts/*
+webroot/js/jquery.min.js
+webroot/js/bootstrap.min.js
+webroot/css/bootstrap.min.css
+webroot/css/bootstrap-theme.min.css
