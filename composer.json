@@ -43,7 +43,11 @@
     "scripts": {
         "post-install-cmd": [
             "App\\Console\\Installer::postInstall",
-            "cp vendor/components/jquery/jquery.min.js webroot/js/jquery.min.js"
+            "cp vendor/components/jquery/jquery.min.js webroot/js/jquery.min.js",
+            "cp vendor/twbs/bootstrap/dist/js/bootstrap.min.js webroot/js/bootstrap.min.js",
+            "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css webroot/css/bootstrap.min.css",
+            "cp vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css webroot/css/bootstrap-theme.min.css",
+            "cp vendor/twbs/bootstrap/dist/fonts/* webroot/fonts"
         ],
         "post-update-cmd": [
             "cp vendor/components/jquery/jquery.min.js webroot/js/jquery.min.js",
