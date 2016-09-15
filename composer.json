@@ -47,6 +47,7 @@
             "cp vendor/twbs/bootstrap/dist/js/bootstrap.min.js webroot/js/bootstrap.min.js",
             "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css webroot/css/bootstrap.min.css",
             "cp vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css webroot/css/bootstrap-theme.min.css",
+            "mkdir -p webroot/fonts",
             "cp vendor/twbs/bootstrap/dist/fonts/* webroot/fonts"
         ],
         "post-update-cmd": [
@@ -54,6 +55,7 @@
             "cp vendor/twbs/bootstrap/dist/js/bootstrap.min.js webroot/js/bootstrap.min.js",
             "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css webroot/css/bootstrap.min.css",
             "cp vendor/twbs/bootstrap/dist/css/bootstrap-theme.min.css webroot/css/bootstrap-theme.min.css",
+            "mkdir -p webroot/fonts",
             "cp vendor/twbs/bootstrap/dist/fonts/* webroot/fonts"
         ],
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
