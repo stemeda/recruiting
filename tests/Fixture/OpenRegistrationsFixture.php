@@ -20,7 +20,7 @@ class OpenRegistrationsFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'valid_until' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'key' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'validate_key' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
@@ -42,10 +42,10 @@ class OpenRegistrationsFixture extends TestFixture
         [
             'id' => 1,
             'user_id' => 1,
-            'valid_until' => '2016-09-10 13:32:00',
-            'key' => 'Lorem ipsum dolor sit amet',
-            'created' => '2016-09-10 13:32:00',
-            'modified' => '2016-09-10 13:32:00'
+            'valid_until' => '2016-09-15 19:28:09',
+            'validate_key' => 'Lorem ipsum dolor sit amet',
+            'created' => '2016-09-15 19:28:09',
+            'modified' => '2016-09-15 19:28:09'
         ],
     ];
 }
