@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stemeda/recruiting.svg?branch=master)](https://travis-ci.org/stemeda/recruiting)
+
 # Recruiting Software
 
 A recruiting software with online recruiting. A study project.
