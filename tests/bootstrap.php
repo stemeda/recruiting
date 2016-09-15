@@ -6,3 +6,5 @@
  * unit tests in this file.
  */
 require dirname(__DIR__) . '/config/bootstrap.php';
+
+ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
