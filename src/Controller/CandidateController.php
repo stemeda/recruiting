@@ -14,7 +14,6 @@ use Cake\I18n\Time;
 use Cake\Mailer\Email;
 use Cake\Utility\Security;
 
-
 /**
  * CakePHP StartController
  * @author stephan
@@ -28,23 +27,26 @@ class CandidateController extends AppController
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return void
      */
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         $this->Auth->allow(['login', 'logout', 'register', 'emailInfo', 'email']);
     }
 
     /**
      * Action to login a user
-     * 
+     *
      * @author Stephan Meyer <>
      * @since 10.09.2016
      * @return \Cake\Network\Response|null
      */
-    public function login() {
+    public function login()
+    {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
@@ -53,13 +55,15 @@ class CandidateController extends AppController
 
     /**
      * Action to logout a user
-     * 
+     *
      * @author Stephan Meyer <>
      * @since 10.09.2016
      * @return \Cake\Network\Response|null
      */
-    public function logout() {
+    public function logout()
+    {
         $this->Flash->success('You are now logged out.');
+
         return $this->redirect($this->Auth->logout());
     }
 
@@ -71,13 +75,14 @@ class CandidateController extends AppController
      * @since 10.09.2016
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function register() {
+    public function register()
+    {
         $this->loadModel('User');
         $user = $this->User->newEntity();
         if ($this->request->is('post')) {
             $userData = $this->request->data;
             $hashValue = Security::randomBytes(100) . php_uname() . microtime(true);
-            $key = (string) hash('sha256', $hashValue);
+            $key = (string)hash('sha256', $hashValue);
             $userData['type'] = 'candidate';
             $userData['active'] = 'false';
             $userData['open_registration'] = [];
@@ -92,6 +97,7 @@ class CandidateController extends AppController
                         ->viewVars(['key' => $key])
                         ->subject('Registrierung Bewerbung')
                         ->send();
+
                 return $this->redirect(['action' => 'emailInfo']);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
@@ -104,24 +110,25 @@ class CandidateController extends AppController
     /**
      * Action to show the user information, that he has to finalize his registration
      * with the link in the email
-     * 
+     *
      * @author Stephan Meyer <>
      * @since 10.09.2016
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
     public function emailInfo()
     {
-        
     }
-    
+
 
     /**
      * Action to finalize the resitration. Checks if the user could be logged in,
-     * if registration key is valid. Sets user to active and deletes registration 
+     * if registration key is valid. Sets user to active and deletes registration
      * key
-     * 
+     *
      * @author Stephan Meyer <>
      * @since 10.09.2016
+     *
+     * @param string $key the key of the registration
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
     public function email($key = null)
@@ -142,14 +149,12 @@ class CandidateController extends AppController
                 case $checkKey === $user->open_registration->validate_key:
                     $this->User->activateAfterRegistration($user);
                     $this->Flash->success("Ihre E-Mail wurde erfolgreich validiert. Sie können sich jetzt anmelden.");
+
                     return $this->redirect('/');
-                    break;
                 default:
                     $this->Flash->error('Your username, password or key is incorrect.');
-                  
             }
         }
         $this->set("key", $key);
     }
-
 }

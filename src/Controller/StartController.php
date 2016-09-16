@@ -14,15 +14,27 @@ use Cake\Event\Event;
  * CakePHP StartController
  * @author stephan
  */
-class StartController extends AppController {
+class StartController extends AppController
+{
 
-    public function beforeFilter(Event $event) {
+    /**
+     * set index action to be allowed without authentication
+     *
+     * @param Event $event the event that has been called
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         $this->Auth->allow('index');
     }
 
-    public function index() {
-        
+    /**
+     * the index action
+     *
+     * @return void
+     */
+    public function index()
+    {
     }
-
 }

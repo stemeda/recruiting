@@ -158,7 +158,7 @@ class SearchFormHelper extends Helper
                     $ret .= $this->Form->input($field['name'], ['type' => 'text']);
                     break;
                 case 'Search\Model\Filter\Boolean':
-                    $ret .= $this->Form->input($field['name'], ['options' => [null =>__('both'), 1 => __('yes'), 0 => __('no')], 'type' => 'select']);
+                    $ret .= $this->Form->input($field['name'], ['options' => [null => __('both'), 1 => __('yes'), 0 => __('no')], 'type' => 'select']);
                     break;
                 case 'App\Model\Filter\Between':
                     $ret .= $this->Form->input($field['name'], ['type' => 'text', 'class' => 'dateRangePicker']);

@@ -24,7 +24,8 @@ use BootstrapUI\View\UIView;
  *
  * @link http://book.cakephp.org/3.0/en/views.html#the-app-view
  */
-class AppView extends UIView {
+class AppView extends UIView
+{
 
     /**
      * Initialization hook method.
@@ -35,7 +36,8 @@ class AppView extends UIView {
      *
      * @return void
      */
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
         $this->loadHelper('AkkaCKEditor.CKEditor', [
             'version' => '4.5.10', // Default Option
@@ -43,5 +45,4 @@ class AppView extends UIView {
         ]);
         $this->loadHelper('SearchForm');
     }
-
 }

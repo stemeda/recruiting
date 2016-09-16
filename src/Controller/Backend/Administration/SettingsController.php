@@ -16,7 +16,7 @@ class SettingsController extends BackendController
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|null
+     * @return void
      */
     public function index()
     {
@@ -26,5 +26,4 @@ class SettingsController extends BackendController
         }
         $this->set('settings', $settings);
     }
-
 }

@@ -27,7 +27,8 @@ use Cake\Event\Event;
  *
  * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
-class BackendController extends Controller {
+class BackendController extends Controller
+{
 
     /**
      * Initialization hook method.
@@ -38,7 +39,8 @@ class BackendController extends Controller {
      *
      * @return void
      */
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
@@ -75,7 +77,8 @@ class BackendController extends Controller {
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return void
      */
-    public function beforeRender(Event $event) {
+    public function beforeRender(Event $event)
+    {
         if (!array_key_exists('_serialize', $this->viewVars) &&
                 in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
@@ -84,5 +87,4 @@ class BackendController extends Controller {
 
         $this->set('userSession', $this->Auth->user());
     }
-
 }

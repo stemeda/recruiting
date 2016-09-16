@@ -21,7 +21,8 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class UserTable extends Table {
+class UserTable extends Table
+{
 
     /**
      * Initialize method
@@ -29,7 +30,8 @@ class UserTable extends Table {
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config) {
+    public function initialize(array $config)
+    {
         parent::initialize($config);
 
         $this->table('user');
@@ -37,8 +39,8 @@ class UserTable extends Table {
         $this->addBehavior('Timestamp');
 
         $this->addBehavior('Search.Search');
-        
-        
+
+
         $this->hasOne('OpenRegistrations', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
@@ -73,7 +75,7 @@ class UserTable extends Table {
                 ->add('active', 'Search.Boolean', [
                     'field' => 'active',
                     'filterEmpty' => true
-        ]);
+                ]);
     }
 
     /**
@@ -82,7 +84,8 @@ class UserTable extends Table {
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator) {
+    public function validationDefault(Validator $validator)
+    {
         $validator
                 ->requirePresence('username', 'create')
                 ->notEmpty('username');
@@ -126,30 +129,52 @@ class UserTable extends Table {
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules) {
+    public function buildRules(RulesChecker $rules)
+    {
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
     }
 
-    public function findBackend(Query $query, array $options) {
+    /**
+     * Finder for users in backend
+     * @param Query $query query of the finder
+     * @param array $options options for the finder
+     * @return Query
+     */
+    public function findBackend(Query $query, array $options)
+    {
         $query->where(['User.active' => 1, 'User.type IN ' => ['admin', 'recruiter']]);
 
         return $query;
     }
 
-    public function findFrontend(Query $query, array $options) {
+    /**
+     * Finder for users in frontend
+     * @param Query $query query of the finder
+     * @param array $options options for the finder
+     * @return Query
+     */
+    public function findFrontend(Query $query, array $options)
+    {
         $query->where(['User.active' => 1, 'User.type IN ' => ['candidate']]);
 
         return $query;
     }
-    
-    public function activateAfterRegistration(User $user) {
+
+    /**
+     * active a user after the registrations. The recistration will be delted
+     * and the user will be set to active
+     *
+     * @param User $user the entity of the user that should be activated
+     * @return bool
+     */
+    public function activateAfterRegistration(User $user)
+    {
         $user->active = true;
         $this->OpenRegistrations->delete($user->open_registration);
-        $this->save($user);
-        
-    }
 
+        return $this->save($user);
+    }
 }

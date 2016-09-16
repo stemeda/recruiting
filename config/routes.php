@@ -45,7 +45,7 @@ Router::defaultRouteClass('DashedRoute');
 Router::prefix('backend', function (RouteBuilder $routes) {
     $routes->addExtensions(['html', 'htm', 'pdf']);
     $routes->connect('/', ['controller' => 'Stellen', 'action' => 'index']);
-    
+
     $routes->prefix('administration', function (RouteBuilder $routes) {
         $routes->connect('/', ['controller' => 'Settings', 'action' => 'index']);
         $routes->fallbacks('DashedRoute');

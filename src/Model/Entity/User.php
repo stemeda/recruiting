@@ -24,58 +24,66 @@ class User extends Entity
      */
     protected $_hidden = [
         'password'
-    ];  
-    
+    ];
+
+    /**
+     * setter for the password. the password will be hashed
+     * @param string $value value of the setter
+     * @return string
+     */
     protected function _setPassword($value)
     {
         $hasher = new DefaultPasswordHasher();
+
         return $hasher->hash($value);
     }
-    
+
     /**
      * checks if the provided user is an Administrator
-     * @param array|null $user
+     * @param array|null $user check the type user
+     * @return bool
      */
     public static function checkAdmin($user)
     {
-        return is_array($user) && 
-            isset($user['type']) && 
+        return is_array($user) &&
+            isset($user['type']) &&
             $user['type'] === 'admin';
     }
-    
+
     /**
      * checks if the provided user is an Recruiter
-     * @param array|null $user
+     * @param array|null $user check the type user
+     * @return bool
      */
     public static function checkRecruiter($user)
     {
-        return is_array($user) && 
-            isset($user['type']) && 
+        return is_array($user) &&
+            isset($user['type']) &&
             $user['type'] === 'recruiter';
     }
-    
+
     /**
      * checks if the provided user is an Recruiter
-     * @param array|null $user
+     * @param array|null $user check the type user
+     * @return bool
      */
     public static function checkBackend($user)
     {
         return is_array($user) && isset($user['type']) && (
-                $user['type'] === 'admin' || 
+                $user['type'] === 'admin' ||
                 $user['type'] === 'recruiter'
         );
     }
-    
+
     /**
      * checks if the provided user is an Recruiter
-     * @param array|null $user
+     * @param array|null $user check the type user
+     * @return bool
      */
     public static function checkCandidate($user)
     {
-        return is_array($user) && 
-            isset($user['type']) && 
+        return is_array($user) &&
+            isset($user['type']) &&
             $user['type'] === 'candidate';
     }
-    
-    
 }
