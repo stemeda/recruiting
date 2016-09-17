@@ -61,6 +61,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Start', 'action' => 'index']);
+    $routes->connect('/login', ['controller' => 'Candidate', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Candidate', 'action' => 'logout']);
+    $routes->connect('/register', ['controller' => 'Candidate', 'action' => 'register']);
 
     /**
      * Connect catchall routes for all controllers.

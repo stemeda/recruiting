@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UserTable;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -24,7 +26,8 @@ class UserTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.user'
+        'app.user',
+        'app.open_registrations',
     ];
 
     /**
@@ -58,7 +61,9 @@ class UserTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertTrue($this->User->hasBehavior('Timestamp'), 'Behavior Timestamp not loaded');
+        $this->assertTrue($this->User->hasBehavior('Search'), 'Behavior Search not loaded');
+        $this->assertTrue($this->User->association('OpenRegistrations') instanceof \Cake\ORM\Association\HasOne, 'Table not associated with OpenRegistrations');
     }
 
     /**
@@ -68,16 +73,73 @@ class UserTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = $this->User->validator();
+        $username = $validator->field('username');
+        $this->assertFalse($username->isEmptyAllowed());
+        $this->assertEquals('create', $username->isPresenceRequired());
+        $firstname = $validator->field('firstname');
+        $this->assertFalse($firstname->isEmptyAllowed());
+        $this->assertEquals('create', $firstname->isPresenceRequired());
+        $surname = $validator->field('surname');
+        $this->assertFalse($surname->isEmptyAllowed());
+        $this->assertEquals('create', $surname->isPresenceRequired());
+        $email = $validator->field('email');
+        $this->assertFalse($email->isEmptyAllowed());
+        $this->assertEquals('create', $email->isPresenceRequired());
+        $this->assertArrayHasKey('email', $email->rules());
+        $password = $validator->field('password');
+        $this->assertFalse($password->isEmptyAllowed());
+        $this->assertEquals('create', $password->isPresenceRequired());
+        $this->assertArrayHasKey('compare', $password->rules());
+        $type = $validator->field('type');
+        $this->assertFalse($type->isEmptyAllowed());
+        $this->assertEquals('create', $type->isPresenceRequired());
     }
 
     /**
-     * Test buildRules method
-     *
-     * @return void
+     * Test findBackend method
      */
-    public function testBuildRules()
+    public function testFindBackend()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $query = $this->User->find('backend');
+        $this->assertEquals(2, $query->count());
+    }
+
+    /**
+     * Test findBackend method
+     */
+    public function testFindFrontend()
+    {
+        $query = $this->User->find('frontend');
+        $this->assertEquals(1, $query->count());
+    }
+
+    /**
+     * Test activateAfterRegistration method
+     */
+    public function testActivateAfterRegistration()
+    {
+        $newUser = $this->User->newEntity([
+            'username' => 'register',
+            'firstname' => 'register',
+            'surname' => 'register',
+            'email' => 'register@example.com',
+            'password' => 'register',
+            'password_check' => 'register',
+            'type' => 'candidate',
+            'active' => false,
+            'open_registration' => [
+                'valid_until' => (new Time())->addDay(5),
+                'validate_key' => 'validate_key',
+            ]
+        ]);
+        $newUser = $this->User->save($newUser, ['associated' => ['OpenRegistrations']]);
+
+        $this->User->activateAfterRegistration($newUser);
+
+        $userAfterRegistration = $this->User->get($newUser->id, ['contain' => ['OpenRegistrations']]);
+
+        $this->assertTrue($userAfterRegistration->active);
+        $this->assertNull($userAfterRegistration->open_registration);
     }
 }

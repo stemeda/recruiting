@@ -52,8 +52,8 @@ class AppController extends Controller
                 ]
             ],
             'loginAction' => [
-                'controller' => 'Candidate',
-                'action' => 'login',
+                'controller' => 'start',
+                'action' => 'index',
                 'prefix' => false,
             ],
             'loginRedirect' => [

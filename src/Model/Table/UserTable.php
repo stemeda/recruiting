@@ -43,7 +43,7 @@ class UserTable extends Table
 
         $this->hasOne('OpenRegistrations', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
 
         // Setup search filter using search manager
@@ -114,7 +114,7 @@ class UserTable extends Table
         $validator->add('password', [
             'compare' => [
                 'rule' => ['compareWith', 'password_check'],
-                'message' => 'Password do not match'
+                'message' => 'Passwords do not match'
             ]
         ]);
 

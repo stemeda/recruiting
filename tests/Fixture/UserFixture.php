@@ -47,14 +47,68 @@ class UserFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => 1,
-            'username' => 'Lorem ipsum dolor sit amet',
-            'firstname' => 'Lorem ipsum dolor sit amet',
-            'surname' => 'Lorem ipsum dolor sit amet',
-            'email' => 'Lorem ipsum dolor sit amet',
-            'password' => 'Lorem ipsum dolor sit amet',
-            'type' => 'Lorem ipsum dolor sit amet',
+            'username' => 'admin',
+            'firstname' => 'admin',
+            'surname' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+            'type' => 'admin',
             'active' => 1,
+            'created' => '2016-09-15 19:27:22',
+            'modified' => '2016-09-15 19:27:22'
+        ],
+        [
+            'username' => 'recruiter',
+            'firstname' => 'recruiter',
+            'surname' => 'recruiter',
+            'email' => 'recruiter@example.com',
+            'password' => 'recruiter',
+            'type' => 'recruiter',
+            'active' => 1,
+            'created' => '2016-09-15 19:27:22',
+            'modified' => '2016-09-15 19:27:22'
+        ],
+        [
+            'username' => 'candidate',
+            'firstname' => 'candidate',
+            'surname' => 'candidate',
+            'email' => 'candidate@example.com',
+            'password' => 'candidate',
+            'type' => 'candidate',
+            'active' => 1,
+            'created' => '2016-09-15 19:27:22',
+            'modified' => '2016-09-15 19:27:22'
+        ],
+        [
+            'username' => 'adminNotActive',
+            'firstname' => 'adminNotActive',
+            'surname' => 'adminNotActive',
+            'email' => 'adminNotActive@example.com',
+            'password' => 'adminNotActive',
+            'type' => 'admin',
+            'active' => 0,
+            'created' => '2016-09-15 19:27:22',
+            'modified' => '2016-09-15 19:27:22'
+        ],
+        [
+            'username' => 'recruiterNotActive',
+            'firstname' => 'recruiterNotActive',
+            'surname' => 'recruiterNotActive',
+            'email' => 'recruiterNotActive@example.com',
+            'password' => 'recruiterNotActive',
+            'type' => 'recruiter',
+            'active' => 0,
+            'created' => '2016-09-15 19:27:22',
+            'modified' => '2016-09-15 19:27:22'
+        ],
+        [
+            'username' => 'candidateNotActive',
+            'firstname' => 'candidateNotActive',
+            'surname' => 'candidateNotActive',
+            'email' => 'candidateNotActive@example.com',
+            'password' => 'candidate',
+            'type' => 'candidate',
+            'active' => 0,
             'created' => '2016-09-15 19:27:22',
             'modified' => '2016-09-15 19:27:22'
         ],

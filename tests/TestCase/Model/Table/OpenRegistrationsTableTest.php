@@ -59,7 +59,8 @@ class OpenRegistrationsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertTrue($this->OpenRegistrations->hasBehavior('Timestamp'), 'Behavior Timestamp not loaded');
+        $this->assertTrue($this->OpenRegistrations->association('User') instanceof \Cake\ORM\Association\HasOne, 'Table not associated with User');
     }
 
     /**
@@ -69,7 +70,17 @@ class OpenRegistrationsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = $this->OpenRegistrations->validator();
+        $id = $validator->field('id');
+        $this->assertEquals('create', $id->isEmptyAllowed());
+        $this->assertArrayHasKey('integer', $id->rules());
+        $validUntil = $validator->field('valid_until');
+        $this->assertFalse($validUntil->isEmptyAllowed());
+        $this->assertEquals('create', $validUntil->isPresenceRequired());
+        $this->assertArrayHasKey('dateTime', $validUntil->rules());
+        $validateKey = $validator->field('validate_key');
+        $this->assertFalse($validateKey->isEmptyAllowed());
+        $this->assertEquals('create', $validateKey->isPresenceRequired());
     }
 
     /**
