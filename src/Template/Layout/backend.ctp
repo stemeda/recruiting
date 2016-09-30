@@ -27,6 +27,13 @@
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('tmpl.min.js') ?>
+
+        <?php if(isset($this->FrontendBridge)) {
+            $this->FrontendBridge->init($frontendData);
+            $this->FrontendBridge->addAllControllers();
+            echo $this->FrontendBridge->run();
+        } ?>
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
@@ -52,16 +59,20 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <?php if (isset($userSession) && is_array($userSession) && isset($userSession['type']) && ($userSession['type'] === 'admin' || $userSession['type'] === 'recruiter')): ?>
                     <ul class="nav navbar-nav">
-                        
+
                         <li class="active"><a href="#">Settings</a></li>
                         <li><a href="#">Link</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stellen <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Anzeigen</a></li>
-                                <li><a href="#">hinzufügen</a></li>
+                                <li><?= $this->Html->link('Anzeigen', ['controller' => 'positions', 'action' => 'index', 'prefix' => 'backend'])?></li>
+                                <li><?= $this->Html->link('Hinzufügen', ['controller' => 'positions', 'action' => 'add', 'prefix' => 'backend'])?></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Noch was</a></li>
+                                <li><?= $this->Html->link('Stellenbeschreibungen anzeigen', ['controller' => 'position_descriptions', 'action' => 'index', 'prefix' => 'backend'])?></li>
+                                <li><?= $this->Html->link('Stellenbeschreibungen hinzufügen', ['controller' => 'position_descriptions', 'action' => 'add', 'prefix' => 'backend'])?></li>
+                                <li role="separator" class="divider"></li>
+                                <li><?= $this->Html->link('Bewerberbeschreibungen anzeigen', ['controller' => 'candidate_descriptions', 'action' => 'index', 'prefix' => 'backend'])?></li>
+                                <li><?= $this->Html->link('Bewerberbeschreibungen hinzufügen', ['controller' => 'candidate_descriptions', 'action' => 'add', 'prefix' => 'backend'])?></li>
                             </ul>
                         </li>
                         <?php if (isset($userSession['type']) && $userSession['type'] === 'admin'): ?>

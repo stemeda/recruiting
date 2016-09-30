@@ -27,6 +27,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+    use \FrontendBridge\Lib\FrontendBridgeTrait;
 
     /**
      * Initialization hook method.
@@ -47,7 +48,7 @@ class AppController extends Controller
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
-                    'userModel' => 'User',
+                    'userModel' => 'Users',
                     'finder' => 'frontend',
                 ]
             ],
@@ -62,6 +63,7 @@ class AppController extends Controller
                 'prefix' => false,
             ],
         ]);
+        $this->loadComponent('FrontendBridge.FrontendBridge');
     }
 
     /**

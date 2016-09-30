@@ -1,0 +1,442 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2016-09-29 16:08+0200\n"
+"PO-Revision-Date: 2016-09-29 16:10+0200\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.5\n"
+"Last-Translator: \n"
+"Language: de\n"
+
+#: Controller/CandidateController.php:103
+#: Controller/Backend/Administration/CandidateController.php:79
+#: Controller/Backend/Administration/RecruiterController.php:75;101
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Backend/PositionsController.php:54;82
+msgid "The position has been saved."
+msgstr ""
+
+#: Controller/Backend/PositionsController.php:58;86
+msgid "The position could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Backend/PositionsController.php:107
+msgid "The position has been deleted."
+msgstr ""
+
+#: Controller/Backend/PositionsController.php:109
+msgid "The position could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Backend/Administration/CandidateController.php:75
+#: Controller/Backend/Administration/RecruiterController.php:71;97
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/Backend/Administration/CandidateController.php:98
+#: Controller/Backend/Administration/RecruiterController.php:120
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/Backend/Administration/CandidateController.php:100
+#: Controller/Backend/Administration/RecruiterController.php:122
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/add.ctp:5;12
+#: Template/Backend/Administration/Candidate/edit.ctp:13;28
+#: Template/Backend/Administration/Candidate/view.ctp:8;18
+#: Template/Backend/Administration/Recruiter/add.ctp:5;12
+#: Template/Backend/Administration/Recruiter/edit.ctp:13;28
+#: Template/Backend/Administration/Recruiter/view.ctp:8;18
+msgid "List User"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/add.ctp:19
+#: Template/Backend/Administration/Recruiter/add.ctp:19
+#: Template/Backend/Positions/add.ctp:4
+msgid "Add {0}"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/add.ctp:26
+#: Template/Backend/Administration/Candidate/edit.ctp:41
+#: Template/Backend/Administration/Recruiter/add.ctp:26
+#: Template/Backend/Administration/Recruiter/edit.ctp:41
+msgid "administration"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/add.ctp:26
+#: Template/Backend/Administration/Candidate/edit.ctp:41
+#: Template/Backend/Administration/Recruiter/add.ctp:26
+#: Template/Backend/Administration/Recruiter/edit.ctp:41
+msgid "recruiter"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/add.ctp:29
+#: Template/Backend/Administration/Recruiter/add.ctp:29
+#: Template/Backend/Positions/add.ctp:15
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: Template/Backend/Administration/Candidate/edit.ctp:7;22
+#: Template/Backend/Administration/Candidate/index.ctp:39
+#: Template/Backend/Administration/Recruiter/edit.ctp:7;22
+#: Template/Backend/Administration/Recruiter/index.ctp:39
+#: Template/Backend/Filestorage/edit.ctp:5
+#: Template/Backend/Filestorage/index.ctp:37
+#: Template/Backend/Positions/index.ctp:28
+#: Template/Backend/Positions/view.ctp:71;109 Template/Bewerbung/edit.ctp:5
+#: Template/Bewerbung/index.ctp:49
+msgid "Delete"
+msgstr "Löschen"
+
+#: Template/Backend/Administration/Candidate/edit.ctp:9;24
+#: Template/Backend/Administration/Candidate/index.ctp:39
+#: Template/Backend/Administration/Candidate/view.ctp:7;17
+#: Template/Backend/Administration/Recruiter/edit.ctp:9;24
+#: Template/Backend/Administration/Recruiter/index.ctp:39
+#: Template/Backend/Administration/Recruiter/view.ctp:7;17
+#: Template/Backend/Filestorage/edit.ctp:7
+#: Template/Backend/Filestorage/index.ctp:37
+#: Template/Backend/Filestorage/view.ctp:5
+#: Template/Backend/Positions/index.ctp:28
+#: Template/Backend/Positions/view.ctp:71;109 Template/Bewerbung/edit.ctp:7
+#: Template/Bewerbung/index.ctp:49 Template/Bewerbung/view.ctp:5
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/edit.ctp:35
+#: Template/Backend/Administration/Recruiter/edit.ctp:35
+#: Template/Backend/Positions/edit.ctp:4
+msgid "Edit {0}"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/edit.ctp:44
+#: Template/Backend/Administration/Recruiter/edit.ctp:44
+#: Template/Backend/Positions/edit.ctp:15
+msgid "Save"
+msgstr "Speichern"
+
+#: Template/Backend/Administration/Candidate/index.ctp:5
+#: Template/Backend/Administration/Candidate/view.ctp:9;19
+#: Template/Backend/Administration/Recruiter/index.ctp:5
+#: Template/Backend/Administration/Recruiter/view.ctp:9;19
+msgid "New User"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/index.ctp:22
+#: Template/Backend/Administration/Recruiter/index.ctp:22
+#: Template/Backend/Filestorage/add.ctp:3
+#: Template/Backend/Filestorage/edit.ctp:3
+#: Template/Backend/Filestorage/index.ctp:3;20
+#: Template/Backend/Filestorage/view.ctp:3
+#: Template/Backend/Positions/index.ctp:12
+#: Template/Backend/Positions/view.ctp:57;95 Template/Bewerbung/add.ctp:3
+#: Template/Bewerbung/edit.ctp:3 Template/Bewerbung/index.ctp:3;29
+#: Template/Bewerbung/view.ctp:3
+msgid "Actions"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/index.ctp:37
+#: Template/Backend/Administration/Recruiter/index.ctp:37
+#: Template/Backend/Filestorage/index.ctp:35
+#: Template/Backend/Positions/index.ctp:26
+#: Template/Backend/Positions/view.ctp:69;107 Template/Bewerbung/index.ctp:47
+msgid "View"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/index.ctp:38
+#: Template/Backend/Administration/Recruiter/index.ctp:38
+#: Template/Backend/Filestorage/index.ctp:36
+#: Template/Backend/Positions/index.ctp:27
+#: Template/Backend/Positions/view.ctp:70;108 Template/Bewerbung/index.ctp:48
+msgid "Edit"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/index.ctp:47
+#: Template/Backend/Administration/Recruiter/index.ctp:47
+#: Template/Backend/Filestorage/index.ctp:45
+#: Template/Backend/Positions/index.ctp:36 Template/Bewerbung/index.ctp:57
+msgid "previous"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/index.ctp:49
+#: Template/Backend/Administration/Recruiter/index.ctp:49
+#: Template/Backend/Filestorage/index.ctp:47
+#: Template/Backend/Positions/index.ctp:38 Template/Bewerbung/index.ctp:59
+msgid "next"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:6;16
+#: Template/Backend/Administration/Recruiter/view.ctp:6;16
+msgid "Edit User"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:7;17
+#: Template/Backend/Administration/Recruiter/view.ctp:7;17
+msgid "Delete User"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:31
+#: Template/Backend/Administration/Recruiter/view.ctp:31
+msgid "Username"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:35
+#: Template/Backend/Administration/Recruiter/view.ctp:35
+#: Template/Bewerbung/view.ctp:40
+msgid "Email"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:39
+#: Template/Backend/Administration/Recruiter/view.ctp:39
+msgid "Password"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:43
+#: Template/Backend/Administration/Recruiter/view.ctp:43
+msgid "Type"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:47
+#: Template/Backend/Administration/Recruiter/view.ctp:47
+#: Template/Backend/Filestorage/view.ctp:22
+#: Template/Backend/Positions/view.ctp:17;52;90 Template/Bewerbung/view.ctp:44
+msgid "Id"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:51
+#: Template/Backend/Administration/Recruiter/view.ctp:51
+#: Template/Backend/Filestorage/view.ctp:42
+#: Template/Backend/Positions/view.ctp:33;56;94 Template/Bewerbung/view.ctp:60
+msgid "Modified"
+msgstr ""
+
+#: Template/Backend/Administration/Candidate/view.ctp:55
+#: Template/Backend/Administration/Recruiter/view.ctp:55
+#: Template/Backend/Filestorage/view.ctp:38
+#: Template/Backend/Positions/view.ctp:29;55;93 Template/Bewerbung/view.ctp:56
+msgid "Created"
+msgstr ""
+
+#: Template/Backend/Filestorage/add.ctp:4
+#: Template/Backend/Filestorage/edit.ctp:10
+#: Template/Backend/Filestorage/view.ctp:6
+msgid "List Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/add.ctp:10
+msgid "Add Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/add.ctp:19
+#: Template/Backend/Filestorage/edit.ctp:25 Template/Bewerbung/add.ctp:25
+#: Template/Bewerbung/edit.ctp:31
+msgid "Submit"
+msgstr ""
+
+#: Template/Backend/Filestorage/edit.ctp:16
+#: Template/Backend/Filestorage/view.ctp:4
+msgid "Edit Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/index.ctp:4
+#: Template/Backend/Filestorage/view.ctp:7
+msgid "New Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/index.ctp:8
+msgid "Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:5
+msgid "Delete Filestorage"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:14
+msgid "Path"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:18
+msgid "Hash"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:26
+msgid "Model"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:30
+msgid "Model Id"
+msgstr ""
+
+#: Template/Backend/Filestorage/view.ctp:34
+msgid "Size"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:9;54;92
+msgid "Name"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:13
+msgid "Description"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:21
+msgid "Awailable From"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:25
+msgid "Awaibale Until"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:37
+msgid "Active"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:38
+msgid "Yes"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:38
+msgid "No"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:46
+msgid "Related CandidateDescriptionValues"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:53
+msgid "Candidate Descriptions Id"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:84
+msgid "Related PositionDescriptionValues"
+msgstr ""
+
+#: Template/Backend/Positions/view.ctp:91
+msgid "Positions Descriptions Id"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:4 Template/Bewerbung/edit.ctp:10
+#: Template/Bewerbung/view.ctp:6
+msgid "List Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:5 Template/Bewerbung/edit.ctp:11
+#: Template/Bewerbung/index.ctp:5 Template/Bewerbung/view.ctp:8
+msgid "List Stellen"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:6 Template/Bewerbung/edit.ctp:12
+#: Template/Bewerbung/index.ctp:6 Template/Bewerbung/view.ctp:9
+msgid "New Stellen"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:7 Template/Bewerbung/edit.ctp:13
+#: Template/Bewerbung/index.ctp:7 Template/Bewerbung/view.ctp:10
+msgid "List Abschluesse"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:8 Template/Bewerbung/edit.ctp:14
+#: Template/Bewerbung/index.ctp:8 Template/Bewerbung/view.ctp:11
+msgid "New Abschluesse"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:9 Template/Bewerbung/edit.ctp:15
+#: Template/Bewerbung/index.ctp:9 Template/Bewerbung/view.ctp:12
+msgid "List Bewerbung Status"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:10 Template/Bewerbung/edit.ctp:16
+#: Template/Bewerbung/index.ctp:10 Template/Bewerbung/view.ctp:13
+msgid "New Bewerbung Status"
+msgstr ""
+
+#: Template/Bewerbung/add.ctp:16
+msgid "Add Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/edit.ctp:22 Template/Bewerbung/view.ctp:4
+msgid "Edit Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/index.ctp:4 Template/Bewerbung/view.ctp:7
+msgid "New Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/index.ctp:14
+msgid "Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:5
+msgid "Delete Bewerbung"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:20
+msgid "Stellen"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:24
+msgid "Abschluesse"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:28
+msgid "Bewerbung Status"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:32
+msgid "Vorname"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:36
+msgid "Nachname"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:48
+msgid "Abschluss Note"
+msgstr ""
+
+#: Template/Bewerbung/view.ctp:52
+msgid "Benachrichtigung"
+msgstr ""
+
+#: Template/Candidate/register.ctp:3;13 Template/Layout/frontend.ctp:76
+msgid "register"
+msgstr "Registrieren"
+
+#: Template/Layout/backend.ctp:61;71;78
+msgid "show"
+msgstr "Anzeigen"
+
+#: Template/Layout/backend.ctp:62;72;79
+msgid "add"
+msgstr "Hinzufügen"
+
+#: Template/Layout/backend.ctp:88 Template/Layout/frontend.ctp:63
+msgid "logout"
+msgstr "Logout"
+
+#: Template/Layout/frontend.ctp:70
+msgid "login"
+msgstr "Login"
+
+#: View/Helper/SearchFormHelper.php:161
+msgid "both"
+msgstr "Beides"
+
+#: View/Helper/SearchFormHelper.php:161
+msgid "yes"
+msgstr "Ja"
+
+#: View/Helper/SearchFormHelper.php:161
+msgid "no"
+msgstr "Nein"

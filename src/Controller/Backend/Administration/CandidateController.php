@@ -23,7 +23,7 @@ class CandidateController extends BackendController
     {
         parent::initialize();
 
-        $this->loadModel('User');
+        $this->loadModel('Users');
     }
 
     /**
@@ -33,7 +33,7 @@ class CandidateController extends BackendController
      */
     public function index()
     {
-        $user = $this->User->find('search', ['search' => $this->request->query])->where(['User.type IN ' => ['candidate']]);
+        $user = $this->Users->find('search', ['search' => $this->request->query])->where(['Users.type IN ' => ['candidate']]);
         $user = $this->paginate($user);
 
         $this->set(compact('user'));
@@ -49,33 +49,11 @@ class CandidateController extends BackendController
      */
     public function view($id = null)
     {
-        $user = $this->User->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
 
         $this->set('user', $user);
-        $this->set('_serialize', ['user']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $user = $this->User->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->User->patchEntity($user, $this->request->data);
-            if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 

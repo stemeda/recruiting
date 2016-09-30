@@ -16,7 +16,8 @@
         "components/jquery": "^3.1",
         "friendsofcake/CakePdf": "^3.2",
         "dompdf/dompdf": "^0.7.0",
-        "friendsofcake/search": "^2.1"
+        "friendsofcake/search": "^2.1",
+        "codekanzlei/cake-frontend-bridge": "^1.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",

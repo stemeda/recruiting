@@ -25,7 +25,7 @@ class OpenRegistrationsTableTest extends TestCase
      */
     public $fixtures = [
         'app.open_registrations',
-        'app.user'
+        'app.users'
     ];
 
     /**
@@ -60,7 +60,7 @@ class OpenRegistrationsTableTest extends TestCase
     public function testInitialize()
     {
         $this->assertTrue($this->OpenRegistrations->hasBehavior('Timestamp'), 'Behavior Timestamp not loaded');
-        $this->assertTrue($this->OpenRegistrations->association('User') instanceof \Cake\ORM\Association\HasOne, 'Table not associated with User');
+        $this->assertTrue($this->OpenRegistrations->association('Users') instanceof \Cake\ORM\Association\HasOne, 'Table not associated with User');
     }
 
     /**

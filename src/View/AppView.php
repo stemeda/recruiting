@@ -44,5 +44,6 @@ class AppView extends UIView
             'distribution' => 'standard' // Default Option / Other options => 'basic', 'standard', 'standard-all', 'full-all'
         ]);
         $this->loadHelper('SearchForm');
+        $this->loadHelper('FrontendBridge', ['className' => 'FrontendBridge.FrontendBridge']);
     }
 }

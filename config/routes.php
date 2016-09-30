@@ -44,12 +44,15 @@ Router::defaultRouteClass('DashedRoute');
 
 Router::prefix('backend', function (RouteBuilder $routes) {
     $routes->addExtensions(['html', 'htm', 'pdf']);
-    $routes->connect('/', ['controller' => 'Stellen', 'action' => 'index']);
 
     $routes->prefix('administration', function (RouteBuilder $routes) {
         $routes->connect('/', ['controller' => 'Settings', 'action' => 'index']);
         $routes->fallbacks('DashedRoute');
     });
+
+    $routes->connect('/', ['controller' => 'Start', 'action' => 'index']);
+    $routes->connect('/login', ['controller' => 'User', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'User', 'action' => 'logout']);
 
     $routes->fallbacks('DashedRoute');
 });

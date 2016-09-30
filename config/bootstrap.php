@@ -240,3 +240,5 @@ Plugin::load('AkkaCKEditor');
 Plugin::load('BootstrapUI');
 
 Plugin::load('CakePdf', ['bootstrap' => true]);
+
+Plugin::load('FrontendBridge', ['bootstrap' => false, 'routes' => true, 'autoload' => true]);

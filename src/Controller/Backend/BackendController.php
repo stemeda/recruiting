@@ -29,6 +29,7 @@ use Cake\Event\Event;
  */
 class BackendController extends Controller
 {
+    use \FrontendBridge\Lib\FrontendBridgeTrait;
 
     /**
      * Initialization hook method.
@@ -48,7 +49,7 @@ class BackendController extends Controller
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
-                    'userModel' => 'User',
+                    'userModel' => 'Users',
                     'finder' => 'backend',
                 ]
             ],
@@ -68,6 +69,8 @@ class BackendController extends Controller
             // the PRG component work only for specified methods.
             'actions' => ['index', 'lookup']
         ]);
+        $this->loadComponent('FrontendBridge.FrontendBridge');
+
         $this->viewBuilder()->layout('backend');
     }
 

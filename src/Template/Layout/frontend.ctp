@@ -18,7 +18,18 @@ use App\Model\Entity\User;
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('tmpl.min.js') ?>
 
+        <?php if(isset($this->FrontendBridge)) {
+            $this->FrontendBridge->init($frontendData);
+            echo $this->FrontendBridge->run();
+        } ?>$dirh = opendir($dirname);
+if ($dirh) {
+    while (($dirElement = readdir($dirh)) !== false) {
+
+    }
+    closedir($dirh);
+}
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>

@@ -77,19 +77,19 @@ class CandidateController extends AppController
      */
     public function register()
     {
-        $this->loadModel('User');
-        $user = $this->User->newEntity();
+        $this->loadModel('Users');
+        $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $userData = $this->request->data;
             $hashValue = Security::randomBytes(100) . php_uname() . microtime(true);
             $key = (string)hash('sha256', $hashValue);
             $userData['type'] = 'candidate';
-            $userData['active'] = 'false';
+            $userData['active'] = false;
             $userData['open_registration'] = [];
             $userData['open_registration']['valid_until'] = (new Time())->addDay(5);
             $userData['open_registration']['validate_key'] = $key;
-            $user = $this->User->patchEntity($user, $userData);
-            if ($this->User->save($user, ['associated' => ['OpenRegistrations']])) {
+            $user = $this->Users->patchEntity($user, $userData);
+            if ($this->Users->save($user, ['associated' => ['OpenRegistrations']])) {
                 $email = new Email();
                 $t = $email->template('register', 'default')
                         ->emailFormat('both')
@@ -133,12 +133,12 @@ class CandidateController extends AppController
      */
     public function email($key = null)
     {
-        $this->loadModel('User');
+        $this->loadModel('Users');
         if ($this->request->is('post')) {
             $checkUser = $this->request->data['username'];
             $checkPassword = $this->request->data['password'];
             $checkKey = $this->request->data['key'];
-            $user = $this->User
+            $user = $this->Users
                 ->find('all')
                 ->where(['username' => $checkUser, 'active' => false])
                 ->contain(['OpenRegistrations'])
@@ -147,7 +147,7 @@ class CandidateController extends AppController
                 case (new DefaultPasswordHasher)->check($checkPassword, $user->password):
                 case !$user->open_registration->valid_until->isPast():
                 case $checkKey === $user->open_registration->validate_key:
-                    $this->User->activateAfterRegistration($user);
+                    $this->Users->activateAfterRegistration($user);
                     $this->Flash->success("Ihre E-Mail wurde erfolgreich validiert. Sie können sich jetzt anmelden.");
 
                     return $this->redirect('/');

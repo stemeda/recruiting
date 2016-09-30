@@ -40,7 +40,7 @@ class OpenRegistrationsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasOne('User', [
+        $this->hasOne('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
@@ -79,7 +79,7 @@ class OpenRegistrationsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'User'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }

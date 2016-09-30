@@ -6,7 +6,7 @@ use App\Controller\Backend\BackendController;
 /**
  * User Controller
  *
- * @property \App\Model\Table\UserTable $User
+ * @property \App\Model\Table\UserTable $Users
  */
 class RecruiterController extends BackendController
 {
@@ -23,7 +23,7 @@ class RecruiterController extends BackendController
     {
         parent::initialize();
 
-        $this->loadModel('User');
+        $this->loadModel('Users');
     }
 
     /**
@@ -33,7 +33,7 @@ class RecruiterController extends BackendController
      */
     public function index()
     {
-        $user = $this->User->find('search', ['search' => $this->request->query])->where(['User.type IN ' => ['admin', 'recruiter']]);
+        $user = $this->Users->find('search', ['search' => $this->request->query])->where(['Users.type IN ' => ['admin', 'recruiter']]);
         $user = $this->paginate($user);
 
         $this->set(compact('user'));
@@ -49,7 +49,7 @@ class RecruiterController extends BackendController
      */
     public function view($id = null)
     {
-        $user = $this->User->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
 
@@ -64,10 +64,10 @@ class RecruiterController extends BackendController
      */
     public function add()
     {
-        $user = $this->User->newEntity();
+        $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->User->patchEntity($user, $this->request->data);
-            if ($this->User->save($user)) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -88,12 +88,12 @@ class RecruiterController extends BackendController
      */
     public function edit($id = null)
     {
-        $user = $this->User->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->User->patchEntity($user, $this->request->data);
-            if ($this->User->save($user)) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -115,8 +115,8 @@ class RecruiterController extends BackendController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->User->get($id);
-        if ($this->User->delete($user)) {
+        $user = $this->Users->get($id);
+        if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
