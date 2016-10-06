@@ -23,13 +23,8 @@ use App\Model\Entity\User;
         <?php if(isset($this->FrontendBridge)) {
             $this->FrontendBridge->init($frontendData);
             echo $this->FrontendBridge->run();
-        } ?>$dirh = opendir($dirname);
-if ($dirh) {
-    while (($dirElement = readdir($dirh)) !== false) {
-
-    }
-    closedir($dirh);
-}
+        } ?>
+        
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
