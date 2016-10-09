@@ -59,7 +59,7 @@ class BackendController extends Controller
                 'prefix' => 'backend',
             ],
             'loginRedirect' => [
-                'controller' => 'Stellen',
+                'controller' => 'Start',
                 'action' => 'index',
                 'prefix' => 'backend',
             ],

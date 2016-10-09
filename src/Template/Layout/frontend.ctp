@@ -24,7 +24,7 @@ use App\Model\Entity\User;
             $this->FrontendBridge->init($frontendData);
             echo $this->FrontendBridge->run();
         } ?>
-        
+
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
@@ -92,7 +92,6 @@ use App\Model\Entity\User;
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <?= $this->fetch('title') ?>
                     <?= $this->Flash->render() ?>
                     <?= $this->fetch('content') ?>
                 </div>

@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 /**
  * CakePHP StartController
@@ -27,6 +28,7 @@ class StartController extends AppController
     {
         parent::beforeFilter($event);
         $this->Auth->allow('index');
+        $this->loadModel('Positions');
     }
 
     /**
@@ -36,5 +38,26 @@ class StartController extends AppController
      */
     public function index()
     {
+        $time = new Time();
+        $positions = $this->Positions->find('all')->where([
+            'active' => true,
+            'awailable_from <' => $time,
+            'awailable_until >' => $time,
+        ]);
+        $this->set('positions', $positions);
+    }
+
+    /**
+     * the view action
+     *
+     * @param int $id id of position to load
+     *
+     * @return void
+     */
+    public function view($id = null)
+    {
+        $time = new Time();
+        $position = $this->Positions->get($id);
+        $this->set('position', $position);
     }
 }

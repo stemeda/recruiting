@@ -64,6 +64,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Start', 'action' => 'index']);
+    $routes->connect('/stelle/*', ['controller' => 'Start', 'action' => 'view']);
+    $routes->connect('/applicate/*', ['controller' => 'Start', 'action' => 'applicate']);
     $routes->connect('/login', ['controller' => 'Candidate', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Candidate', 'action' => 'logout']);
     $routes->connect('/register', ['controller' => 'Candidate', 'action' => 'register']);

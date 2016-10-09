@@ -82,4 +82,16 @@ class AppController extends Controller
 
         $this->set('userSession', $this->Auth->user());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function render($view = null, $layout = null)
+    {
+        if ($this->_isJsonActionRequest()) {
+            return $this->renderJsonAction($view, $layout);
+        }
+
+        return parent::render($view, $layout);
+    }
 }
