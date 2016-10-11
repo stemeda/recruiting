@@ -74,7 +74,7 @@
                                 <li><?= $this->Html->link('Bewerberbeschreibungen anzeigen', ['controller' => 'candidate_descriptions', 'action' => 'index', 'prefix' => 'backend'])?></li>
                                 <li><?= $this->Html->link('Bewerberbeschreibungen hinzufügen', ['controller' => 'candidate_descriptions', 'action' => 'add', 'prefix' => 'backend'])?></li>
                             </ul>
-                        </li>
+                        
                         <?php if (isset($userSession['type']) && $userSession['type'] === 'admin'): ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recruiter <span class="caret"></span></a>
@@ -88,6 +88,13 @@
                             <ul class="dropdown-menu">
                                 <li><?= $this->Html->link(__('show'), ['controller' => 'candidate', 'action' => 'index', 'prefix' => 'backend/administration'])?></li>
                                 <li><?= $this->Html->link(__('add'), ['controller' => 'candidate', 'action' => 'add', 'prefix' => 'backend/administration'])?></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statusübersicht <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><?= $this->Html->link(__('anzeigen'), ['controller' => 'application_status', 'action' => 'index', 'prefix' => 'backend/administration'])?></li>
+                                <li><?= $this->Html->link(__('hinzufügen'), ['controller' => 'application_status', 'action' => 'add', 'prefix' => 'backend/administration'])?></li>
                             </ul>
                         </li>
                         <?php endif; ?>
