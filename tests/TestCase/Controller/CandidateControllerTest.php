@@ -58,7 +58,7 @@ class CandidateControllerTest extends IntegrationTestCase
     public function testLogout()
     {
         $this->get('/logout');
-        $this->assertRedirect('/');
+        $this->assertRedirect('/login');
     }
 
     /**
