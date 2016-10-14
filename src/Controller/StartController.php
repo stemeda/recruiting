@@ -26,8 +26,6 @@ class StartController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $beispiel ='hallo welt';
-        $this->set('test', $beispiel);
         parent::beforeFilter($event);
         $this->Auth->allow(['index', 'view']);
         $this->loadModel('Positions');
