@@ -53,8 +53,8 @@ class AppController extends Controller
                 ]
             ],
             'loginAction' => [
-                'controller' => 'start',
-                'action' => 'index',
+                'controller' => 'Candidate',
+                'action' => 'login',
                 'prefix' => false,
             ],
             'loginRedirect' => [
@@ -62,6 +62,7 @@ class AppController extends Controller
                 'action' => 'index',
                 'prefix' => false,
             ],
+            'authorize' => 'Controller',
         ]);
         $this->loadComponent('FrontendBridge.FrontendBridge');
     }
@@ -93,5 +94,22 @@ class AppController extends Controller
         }
 
         return parent::render($view, $layout);
+    }
+
+    /**
+     * check if user is set and user is type candidate
+     * @param array $user the user to check for authorization
+     * @return bool
+     */
+    public function isAuthorized($user = null)
+    {
+        if ($user === null) {
+            return false;
+        }
+        if (isset($user['type']) && $user['type'] === 'candidate') {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -63,6 +63,7 @@ class BackendController extends Controller
                 'action' => 'index',
                 'prefix' => 'backend',
             ],
+            'authorize' => 'Controller',
         ]);
         $this->loadComponent('Search.Prg', [
             // This is default config. You can modify "actions" as needed to make
@@ -89,5 +90,22 @@ class BackendController extends Controller
         }
 
         $this->set('userSession', $this->Auth->user());
+    }
+
+    /**
+     * check if user is set and user is type candidate
+     * @param array $user the user to check for authorization
+     * @return bool
+     */
+    public function isAuthorized($user = null)
+    {
+        if ($user === null) {
+            return false;
+        }
+        if (isset($user['type']) && in_array($user['type'], ['recruiter', 'admin'])) {
+            return true;
+        }
+
+        return false;
     }
 }

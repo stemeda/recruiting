@@ -2,7 +2,7 @@ App.Components.PositionDescriptionsViewComponent = Frontend.Component.extend({
     startup: function () {
         $('.addPositionDescription').off('click').on('click', function () {
             $this = $(this);
-            var count = $this.data('count');
+            var count = $('.counterForPositionDesciptions').length;
             $this.data('count', count + 1);
             var url = {
                 controller: 'Ajax',
@@ -16,7 +16,7 @@ App.Components.PositionDescriptionsViewComponent = Frontend.Component.extend({
             // create a custom AJAX request with the user input included in the post-data
             App.Main.loadJsonAction(url, {
                 onComplete: function (response, options) {
-                    $body = $this.closest('form').find('.panel-body');
+                    $body = $this.closest('.panel').find('.panel-body');
                     $body.append(options.data.html);
                 }
             });

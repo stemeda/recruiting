@@ -4,5 +4,5 @@ Bitte geben Sie Ihre Login-Daten an, damit wir Ihre Freischaltung überprüfen k
 <?= $this->Form->input('username') ?>
 <?= $this->Form->input('password') ?>
 <?= $this->Form->input('key', ['value' => $key, 'type' => 'hidden']) ?>
-<?= $this->Form->button('Login') ?>
+<?= $this->Form->button('Registrieren') ?>
 <?= $this->Form->end() ?>

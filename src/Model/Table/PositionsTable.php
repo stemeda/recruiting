@@ -44,12 +44,12 @@ class PositionsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsToMany('CandidateDescriptionValues', [
-            'foreignKey' => 'position_id',
+            'foreignKey' => 'positions_id',
             'targetForeignKey' => 'candidate_description_value_id',
             'joinTable' => 'positions_candidate_description_values'
         ]);
         $this->belongsToMany('PositionDescriptionValues', [
-            'foreignKey' => 'position_id',
+            'foreignKey' => 'positions_id',
             'targetForeignKey' => 'position_description_value_id',
             'joinTable' => 'positions_position_description_values'
         ]);

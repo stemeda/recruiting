@@ -27,3 +27,6 @@ An dieser Stelle werden alle verfügbaren Stellen aufgelistet.
         </div>
     </div>
 <?php endforeach; ?>
+<?php if (count($positions) === 0 ): ?>
+    <div class="alert alert-warning" role="alert">Zur Zeit sind keine Stellen verfügbar.</div>
+<?php endif; ?>

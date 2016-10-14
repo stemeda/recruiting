@@ -56,11 +56,11 @@ class ApplicationsTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('ApplicationsPositionDescriptionValues', [
-            'foreignKey' => 'application_id',
+            'foreignKey' => 'applications_id',
             'joinType' => 'LEFT'
         ]);
         $this->belongsToMany('PositionDescriptionValues', [
-            'foreignKey' => 'application_id',
+            'foreignKey' => 'applications_id',
             'targetForeignKey' => 'position_description_value_id',
             'joinTable' => 'applications_position_description_values'
         ]);
@@ -83,7 +83,7 @@ class ApplicationsTable extends Table
             ->allowEmpty('minimal_pay');
 
         $validator
-            ->dateTime('earliest_start')
+            ->date('earliest_start')
             ->requirePresence('earliest_start', 'create')
             ->notEmpty('earliest_start');
 

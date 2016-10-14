@@ -22,6 +22,7 @@ use App\Model\Entity\User;
 
         <?php if(isset($this->FrontendBridge)) {
             $this->FrontendBridge->init($frontendData);
+            $this->FrontendBridge->addAllControllers();
             echo $this->FrontendBridge->run();
         } ?>
 

@@ -88,8 +88,10 @@ class CandidateController extends AppController
             $userData['open_registration'] = [];
             $userData['open_registration']['valid_until'] = (new Time())->addDay(5);
             $userData['open_registration']['validate_key'] = $key;
+            $userData['candidate'] = [];
+            $userData['candidate']['zip'] = '';
             $user = $this->Users->patchEntity($user, $userData);
-            if ($this->Users->save($user, ['associated' => ['OpenRegistrations']])) {
+            if ($this->Users->save($user, ['associated' => ['OpenRegistrations', 'Candidates']])) {
                 $email = new Email();
                 $t = $email->template('register', 'default')
                         ->emailFormat('both')

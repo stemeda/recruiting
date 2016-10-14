@@ -12,4 +12,3 @@
 </fieldset>
 <?= $this->Form->button(__("register")); ?>
 <?= $this->Form->end() ?>
-<?=debug($user);?>
