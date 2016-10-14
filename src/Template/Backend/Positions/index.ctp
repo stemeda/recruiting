@@ -17,7 +17,17 @@
         <tr>
             <td><?= $this->Number->format($positionDescription->id) ?></td>
             <td><?= h($positionDescription->name) ?></td>
-            <td><?= h($positionDescription->description) ?></td>
+            <td><?=
+            $this->Text->truncate(
+                $positionDescription->description,
+                500,
+                [
+                    'ellipsis' => '...',
+                    'exact' => false,
+                    'html' => true
+                ]
+            );
+            ?></td>
             <td><?= h($positionDescription->awailable_from) ?></td>
             <td><?= h($positionDescription->awaibale_until) ?></td>
             <td><?= h($positionDescription->active) ?></td>

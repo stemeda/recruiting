@@ -76,6 +76,7 @@ try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
     Configure::load('settings', 'default');
+    Configure::load('less', 'default');
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }

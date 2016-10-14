@@ -47,6 +47,7 @@ Router::prefix('backend', function (RouteBuilder $routes) {
 
     $routes->prefix('administration', function (RouteBuilder $routes) {
         $routes->connect('/', ['controller' => 'Settings', 'action' => 'index']);
+        $routes->connect('/style', ['controller' => 'Style', 'action' => 'datainput']);
         $routes->fallbacks('DashedRoute');
     });
 

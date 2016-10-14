@@ -12,8 +12,7 @@ use App\Model\Entity\User;
         </title>
         <?= $this->Html->meta('icon') ?>
 
-        <?= $this->Html->css('bootstrap.min.css') ?>
-        <?= $this->Html->css('bootstrap-theme.min.css') ?>
+        <?= $this->Html->css('frontend/bootstrap.css') ?>
         <?= $this->Html->css('backend.css') ?>
 
         <?= $this->Html->script('jquery.min.js') ?>
