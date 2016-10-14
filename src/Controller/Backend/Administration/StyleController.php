@@ -18,8 +18,11 @@ use Less_Parser;
  */
 class StyleController extends BackendController
 {
-
-
+    /**
+     * display input form, save data to config and parse less
+     *
+     * @return void
+     */
     public function datainput()
     {
         if ($this->request->is(['post', 'put'])) {
@@ -29,9 +32,8 @@ class StyleController extends BackendController
             Configure::write('less.gray-dark', $data['gray-dark']);
             Configure::dump('less', 'default', ['less']);
 
-
             $parser = new Less_Parser();
-            $parser->parseFile(ROOT . DS . 'vendor' . DS . 'twbs' . DS. 'bootstrap' . DS . 'less' . DS . 'variables.less');
+            $parser->parseFile(ROOT . DS . 'vendor' . DS . 'twbs' . DS . 'bootstrap' . DS . 'less' . DS . 'variables.less');
 
             $parser->ModifyVars(Configure::read('less'));
 
@@ -75,14 +77,9 @@ class StyleController extends BackendController
                 'utilities.less',
                 'responsive-utilities.less',
             ];
-
             foreach ($files as $file) {
-                $parser->parseFile(ROOT . DS . 'vendor' . DS . 'twbs' . DS. 'bootstrap' . DS . 'less' . DS . $file);
+                $parser->parseFile(ROOT . DS . 'vendor' . DS . 'twbs' . DS . 'bootstrap' . DS . 'less' . DS . $file);
             }
-
-
-
-
             $css = $parser->getCss();
 
             $file = new \Cake\Filesystem\File(WWW_ROOT . DS . 'css' . DS . 'frontend' . DS . 'bootstrap.css');
@@ -90,5 +87,4 @@ class StyleController extends BackendController
             $file->write($css);
         }
     }
-
 }
