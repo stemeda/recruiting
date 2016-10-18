@@ -30,6 +30,19 @@ class StyleController extends BackendController
             Configure::write('less.gray-base', $data['gray-base']);
             Configure::write('less.gray-darker', $data['gray-darker']);
             Configure::write('less.gray-dark', $data['gray-dark']);
+            Configure::write('less.gray', $data['gray']);
+            Configure::write('less.gray-light', $data['gray-light']);
+            Configure::write('less.gray-lighter', $data['gray-lighter']);
+            Configure::write('less.brand-primary', $data['brand-primary']);
+            Configure::write('less.brand-success', $data['brand-success']);
+            Configure::write('less.brand-info', $data['brand-info']);
+            Configure::write('less.brand-warning', $data['brand-warning']);
+            Configure::write('less.brand-danger', $data['brand-danger']);
+            Configure::write('less.body-bg', $data['body-bg']);
+            Configure::write('less.text-color', $data['text-color']);
+            Configure::write('less.link-color', $data['link-color']);
+            Configure::write('less.link-hover-color', $data['link-hover-color']);
+            Configure::write('less.link-hover-decoration', $data['link-hover-decoration']);
             Configure::dump('less', 'default', ['less']);
 
             $parser = new Less_Parser();
