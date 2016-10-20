@@ -3,7 +3,7 @@
 namespace App\Controller\Backend;
 
 /**
- * Positions Controller
+ * Applications Controller
  *
  * @property \App\Model\Table\PositionsTable $applications
  */
