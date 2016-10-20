@@ -5,7 +5,7 @@ namespace App\Controller\Backend;
 /**
  * Positions Controller
  *
- * @property \App\Model\Table\PositionsTable $Positions
+ * @property \App\Model\Table\PositionsTable $applications
  */
 class PositionsController extends BackendController
 {
