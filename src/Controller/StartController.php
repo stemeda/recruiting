@@ -29,6 +29,10 @@ class StartController extends AppController
         parent::beforeFilter($event);
         $this->Auth->allow(['index', 'view']);
         $this->loadModel('Positions');
+        /*Damian*/
+        $this->Auth->allow(['index', 'view']);
+        $this->loadModel('Applications');
+        
     }
 
     /**
@@ -45,6 +49,13 @@ class StartController extends AppController
             'awailable_until >' => $time,
         ]);
         $this->set('positions', $positions);
+        /*Damian*/
+        $application = $this->Applications->find('all')->where([
+            'active' => true,
+            'awailable_from <' => $time,
+            'awailable_until >' => $time,
+        ]);
+        $this->set('application', $application);
     }
 
     /**
@@ -59,6 +70,9 @@ class StartController extends AppController
         $time = new Time();
         $position = $this->Positions->get($id);
         $this->set('position', $position);
+        /*Damian*/
+        $applicaion = $this->Applitions->get($id);
+        $this->set('application', $application);
     }
 
     /**
@@ -128,5 +142,65 @@ class StartController extends AppController
         $this->set('candidate', $user);
         $this->set('position', $position);
         $this->set('positionDescriptions', $positionDescriptions);
-    }
+    /*Damian*/
+    $this->loadModel('Users');
+        $this->loadModel('ApplicationDescriptions');
+        $application = $this->Applitions->get($id, [
+            'contain' => [
+                'CandidateDescriptionValues',
+                'ApplicationDescriptionValues' => [
+                    'ApplicationDescriptions'
+                ],
+            ]
+        ]);
+        $applicationDescriptionIds = $this-applicationDescriptions
+            ->find('all')
+            ->distinct()
+            ->select(['ApplicationDescriptions.id'])
+            ->matching(
+                'ApplicationDescriptionValues.ApplicationDescriptionValues'
+            )
+            ->where([
+                'ApplicationDescriptionValues.positions_id' => $id,
+            ]);
+        $applicationDescriptions = $this->applicationDescriptions->find('all')
+            ->contain([
+                'ApplicationDescriptionValues',
+                'ApplicationDescriptionExtras'
+            ])
+            ->where([
+                'ApplicationDescriptions.id IN' => $applicationDescriptionIds,
+            ]);
+        $user = $this->Users->get(
+            $this->Auth->user('id'),
+            [
+                'contain' => [
+                    'Candidates'
+                ]
+            ]
+        );
+        if ($this->request->is(['post', 'put'])) {
+            $requestData = $this->request->data;
+            foreach ($requestData['candidate']['applications'][0]['applications_position_description_values'] as $key => $value) {
+                if ($value['positions_description_values_id'] === '') {
+                    unset($requestData['candidate']['applications'][0]['applications_position_description_values'][$key]);
+                }
+            }
+            $requestData['candidate']['applications'][0]['application_status_id'] = 1;
+            $user = $this->Users->patchEntity($user, $requestData, ['associated' => ['Candidates.Applications.ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras']]);
+            //debug($user);exit;
+            if ($this->Users->save($user, ['associated' => [
+                'Candidates',
+                'Candidates.Applications',
+                'Candidates.Applications.ApplicationsPositionDescriptionValues',
+                'Candidates.Applications.ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras',
+                ]])) {
+                $this->Flash->success('Bewerbung gespeichert!');
+            }
+        }
+        $this->set('candidate', $user);
+        $this->set('position', $position);
+        $this->set('applicationDescriptions', $positionDescriptions);
+    }    
+   }
 }
