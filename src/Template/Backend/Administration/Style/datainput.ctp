@@ -205,8 +205,175 @@ use Cake\Core\Configure;
 </div> 
  
     <h1>Tables</h1>
-<div class="row">    
+<div class="row">  
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-cell-padding', ['value' => Configure::read('less.table-cell-padding')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-condensed-cell-padding', ['value' => Configure::read('less.table-condensed-cell-padding')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-bg', ['value' => Configure::read('less.table-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-bg-accent', ['value' => Configure::read('less.table-bg-accent')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-bg-hover', ['value' => Configure::read('less.table-bg-hover')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-bg-active', ['value' => Configure::read('less.table-bg-active')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('table-border-color', ['value' => Configure::read('less.table-border-color')])?>
+    </div>
    </div> 
-  
+    
+    <h1>Buttons</h1>
+<div class="row"> 
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-font-weight', ['value' => Configure::read('less.btn-font-weight')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-default-color', ['value' => Configure::read('less.btn-default-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-default-bg', ['value' => Configure::read('less.btn-default-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-default-border', ['value' => Configure::read('less.btn-default-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-primary-color', ['value' => Configure::read('less.btn-primary-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-primary-bg', ['value' => Configure::read('less.btn-primary-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-primary-border', ['value' => Configure::read('less.btn-primary-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-success-color', ['value' => Configure::read('less.btn-success-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-success-bg', ['value' => Configure::read('less.btn-success-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-success-border', ['value' => Configure::read('less.btn-success-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-info-color', ['value' => Configure::read('less.btn-info-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-info-bg', ['value' => Configure::read('less.btn-info-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-info-border', ['value' => Configure::read('less.btn-info-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-warning-color', ['value' => Configure::read('less.btn-warning-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-warning-bg', ['value' => Configure::read('less.btn-warning-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-warning-border', ['value' => Configure::read('less.btn-warning-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-danger-color', ['value' => Configure::read('less.btn-danger-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-danger-bg', ['value' => Configure::read('less.btn-danger-bg')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-danger-border', ['value' => Configure::read('less.btn-danger-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-link-disabled-color', ['value' => Configure::read('less.btn-link-disabled-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-border-radius-base', ['value' => Configure::read('less.btn-border-radius-base')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-border-radius-large', ['value' => Configure::read('less.btn-border-radius-large')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('btn-border-radius-small', ['value' => Configure::read('less.btn-border-radius-small')])?>
+    </div>
+    
+</div>
+    
+    <h1>Forms</h1>
+<div class="row"> 
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-bg', ['value' => Configure::read('less.input-bg')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-bg-disabled', ['value' => Configure::read('less.input-bg-disabled')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-color', ['value' => Configure::read('less.input-color')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-border', ['value' => Configure::read('less.input-border')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-border-radius', ['value' => Configure::read('less.input-border-radius')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-border-radius-large', ['value' => Configure::read('less.input-border-radius-large')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-border-radius-small', ['value' => Configure::read('less.input-border-radius-small')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-border-focus', ['value' => Configure::read('less.input-border-focus')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-color-placeholder', ['value' => Configure::read('less.input-color-placeholder')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-height-base', ['value' => Configure::read('less.input-height-base')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-height-large', ['value' => Configure::read('less.input-height-large')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-height-small', ['value' => Configure::read('less.input-height-small')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('form-group-margin-bottom', ['value' => Configure::read('less.form-group-margin-bottom')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('legend-color', ['value' => Configure::read('less.legend-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('legend-border-color', ['value' => Configure::read('less.legend-border-color')])?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-group-addon-bg', ['value' => Configure::read('less.input-group-addon-bg')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('input-group-addon-border-color', ['value' => Configure::read('less.input-group-addon-border-color')])?>
+    </div>
+    <div class="col-xs-4">
+        <?= $this->Form->input('cursor-disabled', ['value' => Configure::read('less.cursor-disabled')])?>
+    </div>
+</div>
+    
 <?= $this->Form->submit(); ?>
 <?= $this->Form->end() ?>
