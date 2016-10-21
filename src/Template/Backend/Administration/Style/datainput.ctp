@@ -61,7 +61,7 @@ use Cake\Core\Configure;
     <div class="col-xs-4">
         <?= $this->Form->input('link-hover-decoration', ['value' => Configure::read('less.link-hover-decoration')])?>
     </div>
-    
+
 </div>
      <h1>Typography</h1>
 <div class="row">
@@ -128,8 +128,8 @@ use Cake\Core\Configure;
      <div class="col-xs-4">
         <?= $this->Form->input('headings-color', ['value' => Configure::read('less.headings-color')])?>
     </div>
-</div>  
- 
+</div>
+
     <h1>Iconography</h1>
 <div class="row">
     <div class="col-xs-4">
@@ -141,7 +141,7 @@ use Cake\Core\Configure;
     <div class="col-xs-4">
         <?= $this->Form->input('icon-font-svg-id', ['value' => Configure::read('less.icon-font-svg-id')])?>
     </div>
-</div> 
+</div>
 
     <h1>Components</h1>
 <div class="row">
@@ -202,11 +202,11 @@ use Cake\Core\Configure;
         <?= $this->Form->input('caret-width-large', ['value' => Configure::read('less.caret-width-large')])?>
     </div>
     <div class="clearfix"></div>
-</div> 
- 
+</div>
+
     <h1>Tables</h1>
-<div class="row">    
-   </div> 
-  
+<div class="row">
+   </div>
+
 <?= $this->Form->submit(); ?>
 <?= $this->Form->end() ?>
