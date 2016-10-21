@@ -17,7 +17,7 @@ class ApplicationController extends BackendController
      */
     public function index()
     {
-        $applications = $this->paginate($this->applications);
+        $applications = $this->paginate($this->Applications);
 
         $this->set(compact('applications'));
         $this->set('_serialize', ['applications']);
@@ -32,8 +32,8 @@ class ApplicationController extends BackendController
      */
     public function view($id = null)
     {
-        $application = $this->applications->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'PositionDescriptionValues']
+        $application = $this->Applications->get($id, [
+            'contain' => ['CandidateDescriptionValues', 'ApplicationDescriptionValues']
         ]);
 
         $this->set('application', $application);
@@ -47,11 +47,11 @@ class ApplicationController extends BackendController
      */
     public function add()
     {
-        $application = $this->applications->newEntity();
+        $application = $this->Applications->newEntity();
         if ($this->request->is('post')) {
-            $application = $this->applications->patchEntity($application, $this->request->data);
+            $application = $this->Applications->patchEntity($application, $this->request->data);
 
-            if ($this->applications->save($application, ['associated' => ['PositionsPositionDescriptionValues']])) {
+            if ($this->Applications->save($application, ['associated' => ['ApplicationDescriptionValues']])) {
                 $this->Flash->success(__('The application has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -75,12 +75,12 @@ class ApplicationController extends BackendController
      */
     public function edit($id = null)
     {
-        $application = $this->applications->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'PositionDescriptionValues']
+        $application = $this->Applications->get($id, [
+            'contain' => ['CandidateDescriptionValues', 'ApplicationDescriptionValues']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $application = $this->applications->patchEntity($application, $this->request->data);
-            if ($this->applications->save($application)) {
+            $application = $this->Applications->patchEntity($application, $this->request->data);
+            if ($this->Applications->save($application)) {
                 $this->Flash->success(__('The application has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -88,8 +88,8 @@ class ApplicationController extends BackendController
                 $this->Flash->error(__('The application could not be saved. Please, try again.'));
             }
         }
-        $candidateDescriptionValues = $this->applications->CandidateDescriptionValues->find('list', ['limit' => 200]);
-        $applicationDescriptionValues = $this->applications->PositionDescriptionValues->find('list', ['limit' => 200]);
+        $candidateDescriptionValues = $this->Applications->CandidateDescriptionValues->find('list', ['limit' => 200]);
+        $applicationDescriptionValues = $this->Applications->ApplicationDescriptionValues->find('list', ['limit' => 200]);
         $this->set(compact('application', 'candidateDescriptionValues', 'applicationDescriptionValues'));
         $this->set('_serialize', ['application']);
     }
@@ -104,8 +104,8 @@ class ApplicationController extends BackendController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $application = $this->applications->get($id);
-        if ($this->applications->delete($application)) {
+        $application = $this->Applications->get($id);
+        if ($this->Applications->delete($application)) {
             $this->Flash->success(__('The application has been deleted.'));
         } else {
             $this->Flash->error(__('The application could not be deleted. Please, try again.'));
