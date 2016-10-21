@@ -1,1 +1,1 @@
-An dieser Stelle werden alle verfügbaren Stellen aufgelistet. Der Rekruter kann diese Bearbeiten.
+An dieser Stelle werden alle verfügbaren Bewerberschreiben aufgelistet. Der Rekruter kann diese Bearbeiten.
