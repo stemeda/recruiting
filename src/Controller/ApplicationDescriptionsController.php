@@ -3,11 +3,11 @@
 namespace App\Controller\Backend;
 
 /**
- * Positions Controller
+ * Applications Controller
  *
- * @property \App\Model\Table\PositionDescriptionsTable $PositionDescriptions
+ * @property \App\Model\Table\ApplicationDescriptionsTable $ApplicationDescriptions
  */
-class PositionDescriptionsController extends BackendController
+class ApplicationDescriptionsController extends BackendController
 {
 
     /**
@@ -17,7 +17,7 @@ class PositionDescriptionsController extends BackendController
      */
     public function index()
     {
-        $applicationDescriptions = $this->PositionDescriptions->find('search', ['search' => $this->request->query]);
+        $applicationDescriptions = $this->ApplicationDescriptions->find('search', ['search' => $this->request->query]);
         $applicationDescriptions = $this->paginate($applicationDescriptions);
 
         $this->set(compact('applicationDescriptions'));
@@ -27,16 +27,16 @@ class PositionDescriptionsController extends BackendController
     /**
      * View method
      *
-     * @param string|null $id Position id.
+     * @param string|null $id Application id.
      * @return \Cake\Network\Response|null|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $applicationDescriptions = $this->PositionDescriptions->get($id, [
+        $applicationDescriptions = $this->ApplicationDescriptions->get($id, [
             'contain' => [
-                'PositionDescriptionValues',
-                'PositionDescriptionExtras'
+                'ApplicationDescriptionValues',
+                'ApplicationDescriptionExtras'
             ]
         ]);
 
@@ -51,12 +51,12 @@ class PositionDescriptionsController extends BackendController
      */
     public function add()
     {
-        $applicationDescription = $this->PositionDescriptions->newEntity(
+        $applicationDescription = $this->ApplicationDescriptions->newEntity(
             [],
             [
                 'associated' => [
-                    'PositionDescriptionValues',
-                    'PositionDescriptionExtras'
+                    'ApplicationDescriptionValues',
+                    'ApplicationDescriptionExtras'
                 ],
                 'validate' => false
             ]
@@ -73,8 +73,8 @@ class PositionDescriptionsController extends BackendController
                     unset($data['application_description_extras'][$key]);
                 }
             }
-            $applicationDescription = $this->PositionDescriptions->patchEntity($applicationDescription, $data);
-            if ($this->PositionDescriptions->save($applicationDescription, ['associated' => ['PositionDescriptionValues', 'PositionDescriptionExtras']])) {
+            $applicationDescription = $this->ApplicationDescriptions->patchEntity($applicationDescription, $data);
+            if ($this->ApplicationDescriptions->save($applicationDescription, ['associated' => ['ApplicationDescriptionValues', 'ApplicationDescriptionExtras']])) {
                 $this->Flash->success(__('The application has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -89,14 +89,14 @@ class PositionDescriptionsController extends BackendController
     /**
      * Edit method
      *
-     * @param string|null $id Position id.
+     * @param string|null $id Application id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $applicationDescription = $this->PositionDescriptions->get($id, [
-            'contain' => ['PositionDescriptionValues', 'PositionDescriptionExtras']
+        $applicationDescription = $this->ApplicationDescriptions->get($id, [
+            'contain' => ['ApplicationDescriptionValues', 'ApplicationDescriptionExtras']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->data;
@@ -110,8 +110,8 @@ class PositionDescriptionsController extends BackendController
                     unset($data['application_description_extras'][$key]);
                 }
             }
-            $applicationDescription = $this->PositionDescriptions->patchEntity($applicationDescription, $data);
-            if ($this->PositionDescriptions->save($applicationDescription, ['associated' => ['PositionDescriptionValues', 'PositionDescriptionExtras']])) {
+            $applicationDescription = $this->ApplicationDescriptions->patchEntity($applicationDescription, $data);
+            if ($this->ApplicationDescriptions->save($applicationDescription, ['associated' => ['ApplicationDescriptionValues', 'ApplicationDescriptionExtras']])) {
                 $this->Flash->success(__('The application has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -127,17 +127,17 @@ class PositionDescriptionsController extends BackendController
     /**
      * Delete method
      *
-     * @param string|null $id Position id.
+     * @param string|null $id Application id.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $applicationDescription = $this->PositionDescriptions->get($id, [
-            'contain' => ['PositionDescriptionValues', 'PositionDescriptionExtras']
+        $applicationDescription = $this->ApplicationDescriptions->get($id, [
+            'contain' => ['ApplicationDescriptionValues', 'ApplicationDescriptionExtras']
         ]);
-        if ($this->PositionDescriptions->delete($applicationDescription)) {
+        if ($this->ApplicationDescriptions->delete($applicationDescription)) {
             $this->Flash->success(__('The application has been deleted.'));
         } else {
             $this->Flash->error(__('The application could not be deleted. Please, try again.'));
