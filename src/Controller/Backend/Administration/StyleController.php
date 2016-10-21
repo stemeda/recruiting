@@ -82,7 +82,7 @@ class StyleController extends BackendController
             Configure::write('less.component-active-bg', $data['component-active-bg']);
             Configure::write('less.caret-width-base', $data['caret-width-base']);
             Configure::write('less.caret-width-large', $data['caret-width-large']);
-            
+
             Configure::dump('less', 'default', ['less']);
 
             $parser = new Less_Parser();
