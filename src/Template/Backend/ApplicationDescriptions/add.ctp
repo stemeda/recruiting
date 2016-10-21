@@ -1,5 +1,5 @@
 
-<?= $this->Form->create($positionDescription); ?>
+<?= $this->Form->create($applicationDescription); ?>
 <div>
 
     <!-- Nav tabs -->
@@ -27,7 +27,7 @@
             An dieser Stelle können mögliche Werte eingetragen werden:
             <fieldset>
                 <?php
-                echo $this->Form->input('position_description_values.0.name', ['label' => 'Wert #1', 'required' => false]);
+                echo $this->Form->input('application_description_values.0.name', ['label' => 'Wert #1', 'required' => false]);
                 ?>
             </fieldset>
         </div>
@@ -39,13 +39,13 @@
             Sollen zusätzlich weitere Auswahlfelder angezeigt werden?
             <fieldset>
                 Wert #1
-                <?= $this->Form->input('position_description_extras.0.settings', ['type' => 'hidden', 'data-currentid' => 0, 'class' => 'extraValueSettings']); ?>
+                <?= $this->Form->input('application_description_extras.0.settings', ['type' => 'hidden', 'data-currentid' => 0, 'class' => 'extraValueSettings']); ?>
                 <div class="row">
                     <div class="col-sm-5">
-                        <?= $this->Form->input('position_description_extras.0.name', ['required' => false]); ?>
+                        <?= $this->Form->input('application_description_extras.0.name', ['required' => false]); ?>
                     </div>
                     <div class="col-sm-5">
-                        <?= $this->Form->input('position_description_extras.0.type', ['required' => false, 'empty' => 'Bitte wählen', 'data-currentid' => 0, 'class' => 'extraValueSelect', 'options' => ['bool' => 'Wahr/Falsch', 'checkbox' => 'Auswahlbox', 'text' => 'Text', 'date' => 'Datum']]); ?>
+                        <?= $this->Form->input('application_description_extras.0.type', ['required' => false, 'empty' => 'Bitte wählen', 'data-currentid' => 0, 'class' => 'extraValueSelect', 'options' => ['bool' => 'Wahr/Falsch', 'checkbox' => 'Auswahlbox', 'text' => 'Text', 'date' => 'Datum']]); ?>
                     </div>
                     <div class="col-sm-2">
                         <span class="extraValueSettingButton btn btn-default glyphicon glyphicon-filter disabled" title="Weitere Einstellungen" data-currentid="0"></span>
@@ -61,4 +61,4 @@
 <?= $this->Form->end() ?>
 
 
-<?= $this->element('position_descriptions_templates')?>
+<?= $this->element('application_descriptions_templates')?>

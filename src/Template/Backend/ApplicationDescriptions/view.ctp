@@ -1,16 +1,16 @@
 
-<?php echo $this->Form->create($positionDescriptions); ?>
+<?php echo $this->Form->create($applicationDescriptions); ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php if ($positionDescriptions->multiple): ?>
+        <?php if ($applicationDescriptions->multiple): ?>
             <div class="pull-right">
-                <span class="btn btn-default btn-xs glyphicon glyphicon-plus addPositionDescription" title="Wert hinzufügen" data-count="1" data-id="<?=$positionDescriptions->id?>"></span>
+                <span class="btn btn-default btn-xs glyphicon glyphicon-plus addPositionDescription" title="Wert hinzufügen" data-count="1" data-id="<?=$applicationDescriptions->id?>"></span>
             </div>
         <?php endif; ?>
-        <?= $positionDescriptions->name ?>
+        <?= $applicationDescriptions->name ?>
     </div>
     <div class="panel-body">
-        <?= $this->element('position_description_view', ['positionDescription' =>$positionDescriptions, 'number' => 0])?>
+        <?= $this->element('application_description_view', ['applicationDescription' =>$applicationDescriptions, 'number' => 0])?>
     </div>
 </div>
 

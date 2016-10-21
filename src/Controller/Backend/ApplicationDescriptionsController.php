@@ -17,7 +17,7 @@ class ApplicationDescriptionsController extends BackendController
      */
     public function index()
     {
-        $applicationDescriptions = $this->ApplicationDescriptions->find('search', ['search' => $this->request->query]);
+        $applicationDescriptions = $this->applicationDescriptions->find('search', ['search' => $this->request->query]);
         $applicationDescriptions = $this->paginate($applicationDescriptions);
 
         $this->set(compact('applicationDescriptions'));

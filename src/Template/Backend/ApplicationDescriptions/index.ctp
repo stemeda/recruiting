@@ -1,5 +1,5 @@
 
-<?= $this->SearchForm->form('PositionDescriptions'); ?>
+<?= $this->SearchForm->form('ApplicationDescriptions'); ?>
 
 <table class="table table-striped" cellpadding="0" cellspacing="0">
     <thead>
@@ -13,17 +13,17 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($positionDescriptions as $positionDescription): ?>
+        <?php foreach ($applicationDescription as $applicationDescription): ?>
         <tr>
-            <td><?= $this->Number->format($positionDescription->id) ?></td>
-            <td><?= h($positionDescription->name) ?></td>
-            <td><?= h($positionDescription->multiple) ?></td>
-            <td><?= h($positionDescription->created) ?></td>
-            <td><?= h($positionDescription->modified) ?></td>
+            <td><?= $this->Number->format($applicationDescription->id) ?></td>
+            <td><?= h($applicationDescription->name) ?></td>
+            <td><?= h($applicationDescription->multiple) ?></td>
+            <td><?= h($applicationDescription->created) ?></td>
+            <td><?= h($applicationDescription->modified) ?></td>
             <td class="actions">
-                <?= $this->Html->link('', ['action' => 'view', $positionDescription->id], ['title' => 'Anzeige', 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                <?= $this->Html->link('', ['action' => 'edit', $positionDescription->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
-                <!--<?= $this->Form->postLink('', ['action' => 'delete', $positionDescription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $positionDescription->id), 'title' => 'Löschen', 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>-->
+                <?= $this->Html->link('', ['action' => 'view', $applicationDescription->id], ['title' => 'Anzeige', 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
+                <?= $this->Html->link('', ['action' => 'edit', $applicationDescription->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                <!--<?= $this->Form->postLink('', ['action' => 'delete', $applicationDescription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $applicationDescription->id), 'title' => 'Löschen', 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>-->
             </td>
         </tr>
         <?php endforeach; ?>
