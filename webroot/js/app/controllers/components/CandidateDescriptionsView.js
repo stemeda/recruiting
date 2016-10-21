@@ -1,12 +1,12 @@
-App.Components.ApplicationDescriptionsViewComponent = Frontend.Component.extend({
+App.Components.CandidateDescriptionsViewComponent = Frontend.Component.extend({
     startup: function () {
-        $('.addApplicationDescription').off('click').on('click', function () {
+        $('.addCandidateDescription').off('click').on('click', function () {
             $this = $(this);
-            var count = $('.counterForApplicationDesciptions').length;
+            var count = $('.counterForCandidateDesciptions').length;
             $this.data('count', count + 1);
             var url = {
                 controller: 'Ajax',
-                action: 'load_application_description_view',
+                action: 'load_candidate_description_view',
                 pass: [
                     $this.data('id'),
                     count

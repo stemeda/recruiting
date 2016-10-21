@@ -3,11 +3,11 @@
 namespace App\Controller\Backend;
 
 /**
- * Applications Controller
+ * Candidates Controller
  *
- * @property \App\Model\Table\PositionsTable $applications
+ * @property \App\Model\Table\PositionsTable $candidates
  */
-class ApplicationController extends BackendController
+class CandidateController extends BackendController
 {
 
     /**
@@ -17,10 +17,10 @@ class ApplicationController extends BackendController
      */
     public function index()
     {
-        $applications = $this->paginate($this->Applications);
+        $candidates = $this->paginate($this->Candidates);
 
-        $this->set(compact('applications'));
-        $this->set('_serialize', ['applications']);
+        $this->set(compact('candidates'));
+        $this->set('_serialize', ['candidates']);
     }
 
     /**
@@ -32,12 +32,12 @@ class ApplicationController extends BackendController
      */
     public function view($id = null)
     {
-        $application = $this->Applications->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'ApplicationDescriptionValues']
+        $candidate = $this->Candidates->get($id, [
+            'contain' => ['CandidateDescriptionValues', 'CandidateDescriptionValues']
         ]);
 
-        $this->set('application', $application);
-        $this->set('_serialize', ['application']);
+        $this->set('candidate', $candidate);
+        $this->set('_serialize', ['candidate']);
     }
 
     /**
@@ -47,23 +47,23 @@ class ApplicationController extends BackendController
      */
     public function add()
     {
-        $application = $this->Applications->newEntity();
+        $candidate = $this->Candidates->newEntity();
         if ($this->request->is('post')) {
-            $application = $this->Applications->patchEntity($application, $this->request->data);
+            $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
 
-            if ($this->Applications->save($application, ['associated' => ['ApplicationDescriptionValues']])) {
-                $this->Flash->success(__('The application has been saved.'));
+            if ($this->Candidates->save($candidate, ['associated' => ['CandidateDescriptionValues']])) {
+                $this->Flash->success(__('The candidate has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                debug($application);
-                $this->Flash->error(__('The application could not be saved. Please, try again.'));
+                debug($candidate);
+                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
             }
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
-        $applicationDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
-        $this->set(compact('application', 'applicationDescriptions'));
-        $this->set('_serialize', ['application']);
+        $candidateDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
+        $this->set(compact('candidate', 'candidateDescriptions'));
+        $this->set('_serialize', ['candidate']);
     }
 
     /**
@@ -75,23 +75,23 @@ class ApplicationController extends BackendController
      */
     public function edit($id = null)
     {
-        $application = $this->Applications->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'ApplicationDescriptionValues']
+        $candidate = $this->Candidates->get($id, [
+            'contain' => ['CandidateDescriptionValues', 'CandidateDescriptionValues']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $application = $this->Applications->patchEntity($application, $this->request->data);
-            if ($this->Applications->save($application)) {
-                $this->Flash->success(__('The application has been saved.'));
+            $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
+            if ($this->Candidates->save($candidate)) {
+                $this->Flash->success(__('The candidate has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The application could not be saved. Please, try again.'));
+                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
             }
         }
-        $candidateDescriptionValues = $this->Applications->CandidateDescriptionValues->find('list', ['limit' => 200]);
-        $applicationDescriptionValues = $this->Applications->ApplicationDescriptionValues->find('list', ['limit' => 200]);
-        $this->set(compact('application', 'candidateDescriptionValues', 'applicationDescriptionValues'));
-        $this->set('_serialize', ['application']);
+        $candidateDescriptionValues = $this->Candidates->CandidateDescriptionValues->find('list', ['limit' => 200]);
+        $candidateDescriptionValues = $this->Candidates->CandidateDescriptionValues->find('list', ['limit' => 200]);
+        $this->set(compact('candidate', 'candidateDescriptionValues', 'candidateDescriptionValues'));
+        $this->set('_serialize', ['candidate']);
     }
 
     /**
@@ -104,11 +104,11 @@ class ApplicationController extends BackendController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $application = $this->Applications->get($id);
-        if ($this->Applications->delete($application)) {
-            $this->Flash->success(__('The application has been deleted.'));
+        $candidate = $this->Candidates->get($id);
+        if ($this->Candidates->delete($candidate)) {
+            $this->Flash->success(__('The candidate has been deleted.'));
         } else {
-            $this->Flash->error(__('The application could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The candidate could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

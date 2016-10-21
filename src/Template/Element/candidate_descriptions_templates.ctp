@@ -1,27 +1,27 @@
 
 <script type="text/html" id="tmpl-addValue">
     <div class="form-group text">
-        <label class="control-label" for="application-description-values-{%=o.current%}-name">
+        <label class="control-label" for="candidate-description-values-{%=o.current%}-name">
             Wert #{%=(o.current+1)%}
         </label>
-        <input id="application-description-values-{%=o.current%}-name" class="form-control" name="application_description_values[{%=o.current%}][name]" maxlength="255" type="text">
+        <input id="candidate-description-values-{%=o.current%}-name" class="form-control" name="candidate_description_values[{%=o.current%}][name]" maxlength="255" type="text">
     </div>
 </script>
 
 <script type="text/html" id="tmpl-addExtra">
     Wert #{%=(o.current+1)%}
-    <input id="application-description-extras-{%=o.current%}-settings" name="application_description_extras[{%=o.current%}][settings]" type="hidden">
+    <input id="candidate-description-extras-{%=o.current%}-settings" name="candidate_description_extras[{%=o.current%}][settings]" type="hidden">
     <div class="row">
         <div class="col-sm-5">
             <div class="form-group text">
-                <label class="control-label" for="application-description-extras-{%=o.current%}-name">Name</label>
-                <input id="application-description-extras-{%=o.current%}-name" class="form-control" name="application_description_extras[{%=o.current%}][name]" maxlength="255" type="text">
+                <label class="control-label" for="candidate-description-extras-{%=o.current%}-name">Name</label>
+                <input id="candidate-description-extras-{%=o.current%}-name" class="form-control" name="candidate_description_extras[{%=o.current%}][name]" maxlength="255" type="text">
             </div>
         </div>
         <div class="col-sm-5">
             <div class="form-group text">
-                <label class="control-label" for="application-description-extras-{%=o.current%}-type">Type</label>
-                <select id="application-description-extras-{%=o.current%}-type" class="extraValueSelect form-control" name="application_description_extras[{%=o.current%}][type]" data-currentid="{%=o.current%}">
+                <label class="control-label" for="candidate-description-extras-{%=o.current%}-type">Type</label>
+                <select id="candidate-description-extras-{%=o.current%}-type" class="extraValueSelect form-control" name="candidate_description_extras[{%=o.current%}][type]" data-currentid="{%=o.current%}">
                     <option value="">Bitte wählen</option>
                     <option value="bool">Wahr/Falsch</option>
                     <option value="checkbox">Auswahlbox</option>

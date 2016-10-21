@@ -1,5 +1,5 @@
 
-<?= $this->Form->create($applicationDescription); ?>
+<?= $this->Form->create($candidateDescription); ?>
 <div>
 
     <!-- Nav tabs -->
@@ -27,9 +27,9 @@
             An dieser Stelle können mögliche Werte eingetragen werden:
             <fieldset>
                 <?php
-                foreach ($applicationDescription['application_description_values'] as $key => $value) {
-                    echo $this->Form->input('application_description_values.' . $key . '.name', ['label' => 'Wert #' . ($key + 1), 'required' => false]);
-                    echo $this->Form->input('application_description_values.' . $key . '.id', ['type' => 'hidden', 'required' => false]);
+                foreach ($candidateDescription['candidate_description_values'] as $key => $value) {
+                    echo $this->Form->input('candidate_description_values.' . $key . '.name', ['label' => 'Wert #' . ($key + 1), 'required' => false]);
+                    echo $this->Form->input('candidate_description_values.' . $key . '.id', ['type' => 'hidden', 'required' => false]);
                 }
 
                 ?>
@@ -42,16 +42,16 @@
             <br/>
             Sollen zusätzlich weitere Auswahlfelder angezeigt werden?
             <fieldset>
-                <?php foreach ($applicationDescription['application_description_extras'] as $key => $value): ?>
-                    <?=$this->Form->input('application_description_extras.' . $key . '.id', ['type' => 'hidden', 'required' => false]);?>
+                <?php foreach ($candidateDescription['candidate_description_extras'] as $key => $value): ?>
+                    <?=$this->Form->input('candidate_description_extras.' . $key . '.id', ['type' => 'hidden', 'required' => false]);?>
                     Wert #<?= $key + 1 ?>
-                    <?= $this->Form->input('application_description_extras.' . $key . '.settings', ['type' => 'hidden', 'data-currentid' => $key, 'class' => 'extraValueSettings']); ?>
+                    <?= $this->Form->input('candidate_description_extras.' . $key . '.settings', ['type' => 'hidden', 'data-currentid' => $key, 'class' => 'extraValueSettings']); ?>
                     <div class="row">
                         <div class="col-sm-5">
-                            <?= $this->Form->input('application_description_extras.' . $key . '.name', ['required' => false]); ?>
+                            <?= $this->Form->input('candidate_description_extras.' . $key . '.name', ['required' => false]); ?>
                         </div>
                         <div class="col-sm-5">
-                            <?= $this->Form->input('application_description_extras.' . $key . '.type', ['required' => false, 'empty' => 'Bitte wählen', 'data-currentid' => $key, 'class' => 'extraValueSelect', 'options' => ['bool' => 'Wahr/Falsch', 'checkbox' => 'Auswahlbox', 'text' => 'Text', 'date' => 'Datum']]); ?>
+                            <?= $this->Form->input('candidate_description_extras.' . $key . '.type', ['required' => false, 'empty' => 'Bitte wählen', 'data-currentid' => $key, 'class' => 'extraValueSelect', 'options' => ['bool' => 'Wahr/Falsch', 'checkbox' => 'Auswahlbox', 'text' => 'Text', 'date' => 'Datum']]); ?>
                         </div>
                         <div class="col-sm-2">
                             <span class="extraValueSettingButton btn btn-default glyphicon glyphicon-filter <?= $value->type === 'checkbox' ? '' : 'disabled'?>" title="Weitere Einstellungen" data-currentid="<?=$key?>"></span>
@@ -67,4 +67,4 @@
 <?= $this->Form->button('Speichern'); ?>
 <?= $this->Form->end() ?>
 
-<?= $this->element('application_descriptions_templates')?>
+<?= $this->element('candidate_descriptions_templates')?>

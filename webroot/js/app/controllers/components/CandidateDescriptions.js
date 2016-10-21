@@ -1,4 +1,4 @@
-App.Components.ApplicationDescriptionsComponent = Frontend.Component.extend({
+App.Components.CandidateDescriptionsComponent = Frontend.Component.extend({
     startup: function () {
         var extraValueSettingsSetter;
         extraValueSettingsSetter = function () {
@@ -10,7 +10,7 @@ App.Components.ApplicationDescriptionsComponent = Frontend.Component.extend({
                         var currentId = $(this).data('currentid');
                         var settings = {};
                         try {
-                            settings = jQuery.parseJSON($('input[name="application_description_extras[' + currentId + '][settings]"]').val());
+                            settings = jQuery.parseJSON($('input[name="candidate_description_extras[' + currentId + '][settings]"]').val());
                         } catch (e) {
                             ;
                         }
@@ -30,7 +30,7 @@ App.Components.ApplicationDescriptionsComponent = Frontend.Component.extend({
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             var form = $(this).find('form[name="extraSettingsValues"]').serializeArray();
-                            $('input[name="application_description_extras[' + currentId + '][settings]"]').val(JSON.stringify(form));
+                            $('input[name="candidate_description_extras[' + currentId + '][settings]"]').val(JSON.stringify(form));
 
                         });
                         $modal.modal('show');
