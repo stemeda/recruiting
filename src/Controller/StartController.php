@@ -29,9 +29,9 @@ class StartController extends AppController
         parent::beforeFilter($event);
         $this->Auth->allow(['index', 'view']);
         $this->loadModel('Positions');
-        /*Damian*/
+        /*Damian
         $this->Auth->allow(['index', 'view']);
-        $this->loadModel('Applications');
+        $this->loadModel('Applications');*/
         
     }
 
@@ -49,13 +49,13 @@ class StartController extends AppController
             'awailable_until >' => $time,
         ]);
         $this->set('positions', $positions);
-        /*Damian*/
+        /*Damian
         $application = $this->Applications->find('all')->where([
             'active' => true,
             'awailable_from <' => $time,
             'awailable_until >' => $time,
         ]);
-        $this->set('application', $application);
+        $this->set('application', $application);*/
     }
 
     /**
@@ -70,9 +70,9 @@ class StartController extends AppController
         $time = new Time();
         $position = $this->Positions->get($id);
         $this->set('position', $position);
-        /*Damian*/
+        /*Damian
         $applicaion = $this->Applitions->get($id);
-        $this->set('application', $application);
+        $this->set('application', $application);*/
     }
 
     /**
@@ -142,7 +142,7 @@ class StartController extends AppController
         $this->set('candidate', $user);
         $this->set('position', $position);
         $this->set('positionDescriptions', $positionDescriptions);
-    /*Damian*/
+    /*Damian
     $this->loadModel('Users');
         $this->loadModel('ApplicationDescriptions');
         $application = $this->Applitions->get($id, [
@@ -201,6 +201,6 @@ class StartController extends AppController
         $this->set('candidate', $user);
         $this->set('position', $position);
         $this->set('applicationDescriptions', $positionDescriptions);
-    }    
+    } */   
    }
 }

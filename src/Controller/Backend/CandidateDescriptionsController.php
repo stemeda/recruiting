@@ -3,7 +3,7 @@
 namespace App\Controller\Backend;
 
 /**
- * Candidates Controller
+ * CandidateDescriptions Controller
  *
  * @property \App\Model\Table\CandidateDescriptionsTable $CandidateDescriptions
  */
@@ -17,7 +17,7 @@ class CandidateDescriptionsController extends BackendController
      */
     public function index()
     {
-        $candidateDescriptions = $this->candidateDescriptions->find('search', ['search' => $this->request->query]);
+        $candidateDescriptions = $this->CandidateDescriptions->find('search', ['search' => $this->request->query]);
         $candidateDescriptions = $this->paginate($candidateDescriptions);
 
         $this->set(compact('candidateDescriptions'));
