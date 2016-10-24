@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($candidateDescription as $candidateDescription): ?>
+        <?php foreach ($candidateDescriptions as $candidateDescription): ?>
         <tr>
             <td><?= $this->Number->format($candidateDescription->id) ?></td>
             <td><?= h($candidateDescription->name) ?></td>
