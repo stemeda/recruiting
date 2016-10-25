@@ -176,11 +176,12 @@ class StartController extends AppController
     public function openApplications()
     {
         $this->loadModel('Applications');
-        $this->Applications
+        $applications = $this->Applications
             ->find('all')
             ->contain(['Positions', 'ApplicationStatus'])
             ->where([
                 'Applications.candidates_id' => $this->Auth->user('candidate.id')
             ]);
+        $this->set('applications', $applications);
     }
 }
