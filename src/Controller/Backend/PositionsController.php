@@ -51,7 +51,7 @@ class PositionsController extends BackendController
         if ($this->request->is('post')) {
             $position = $this->Positions->patchEntity($position, $this->request->data);
 
-            if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues']])) {
+            if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
                 $this->Flash->success(__('The position has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -62,7 +62,8 @@ class PositionsController extends BackendController
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
         $positionDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
-        $this->set(compact('position', 'positionDescriptions'));
+        $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->find('all')->contain(['CandidateDescriptionValues']);
+        $this->set(compact('position', 'positionDescriptions', 'candidateDescriptions'));
         $this->set('_serialize', ['position']);
     }
 

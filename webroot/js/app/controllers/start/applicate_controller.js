@@ -1,5 +1,5 @@
 App.Controllers.StartApplicateController = Frontend.AppController.extend({
-    components: ['PositionDescriptionsView'],
+    components: ['PositionDescriptionsView', 'CandidateDescriptionsView'],
     startup: function() {
 
     }

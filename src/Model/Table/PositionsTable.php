@@ -88,9 +88,9 @@ class PositionsTable extends Table
             ->notEmpty('awailable_from');
 
         $validator
-            ->dateTime('awaibale_until')
-            ->requirePresence('awaibale_until', 'create')
-            ->notEmpty('awaibale_until');
+            ->dateTime('awailable_until')
+            ->requirePresence('awailable_until', 'create')
+            ->notEmpty('awailable_until');
 
         $validator
             ->boolean('active')

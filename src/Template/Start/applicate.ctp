@@ -11,6 +11,23 @@
 <?= $this->Form->input('candidate.mobile') ?>
 <?= $this->Form->input('candidate.phone') ?>
 <?= $this->Form->input('candidate.applications.0.earliest_start', ['type' => 'date']) ?>
+
+<?php foreach ($candidateDescriptions as $key => $candidateDescription): ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if ($candidateDescription->multiple): ?>
+                <div class="pull-right">
+                    <span class="btn btn-default btn-xs glyphicon glyphicon-plus addCandidateDescription" title="Wert hinzufügen" data-count="1" data-id="<?= $candidateDescription->id ?>"></span>
+                </div>
+            <?php endif; ?>
+            <?= $candidateDescription->name ?>
+        </div>
+        <div class="panel-body">
+            <?= $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key]) ?>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 <?php foreach ($positionDescriptions as $key => $positionDescription): ?>
     <div class="panel panel-default">
         <div class="panel-heading">
