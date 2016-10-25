@@ -169,4 +169,18 @@ class StartController extends AppController
         $this->set('positionDescriptions', $positionDescriptions);
         $this->set('candidateDescriptions', $candidateDescriptions);
     }
+
+    /**
+     * show all open applications of the current candidate
+     */
+    public function openApplications()
+    {
+        $this->loadModel('Applications');
+        $this->Applications
+            ->find('all')
+            ->contain(['Positions', 'ApplicationStatus'])
+            ->where([
+                'Applications.candidates_id' => $this->Auth->user('candidate.id')
+            ]);
+    }
 }

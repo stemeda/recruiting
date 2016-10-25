@@ -56,7 +56,7 @@ use App\Model\Entity\User;
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meine Bewerbungen <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Anzeigen</a></li>
+                                    <li><a href="#"><?= $this->Html->link('Anzeigen', ['controller' => 'start', 'action' => 'open_applications'])?></a></li>
                                     <li><a href="#">hinzufügen</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#">Noch was</a></li>

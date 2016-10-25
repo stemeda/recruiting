@@ -177,7 +177,8 @@ class UsersTable extends Table
      */
     public function findFrontend(Query $query, array $options)
     {
-        $query->where(['Users.active' => 1, 'Users.type IN ' => ['candidate']]);
+        $query->where(['Users.active' => 1, 'Users.type IN ' => ['candidate']])
+            ->contain(['Candidates']);
 
         return $query;
     }
