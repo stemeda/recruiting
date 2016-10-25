@@ -52,7 +52,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Bewerbermanagement</a>
+                    <?= $this->Html->link('Bewerbermanagement', ['controller' => 'start', 'action' => 'index', 'prefix' => 'backend'], ['class' => 'navbar-brand'])?>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,7 +74,7 @@
                                 <li><?= $this->Html->link('Bewerberbeschreibungen anzeigen', ['controller' => 'candidate_descriptions', 'action' => 'index', 'prefix' => 'backend'])?></li>
                                 <li><?= $this->Html->link('Bewerberbeschreibungen hinzufügen', ['controller' => 'candidate_descriptions', 'action' => 'add', 'prefix' => 'backend'])?></li>
                             </ul>
-                        
+
                         <?php if (isset($userSession['type']) && $userSession['type'] === 'admin'): ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recruiter <span class="caret"></span></a>
@@ -97,6 +97,8 @@
                                 <li><?= $this->Html->link(__('hinzufügen'), ['controller' => 'application_status', 'action' => 'add', 'prefix' => 'backend/administration'])?></li>
                             </ul>
                         </li>
+                        <li><?= $this->Html->link('Frontend Style', ['controller' => 'style', 'action' => 'datainput', 'prefix' => 'backend/administration'])?></li>
+                        <li><?= $this->Html->link('Einstellungen', ['controller' => 'settings', 'action' => 'index', 'prefix' => 'backend/administration'])?></li>
                         <?php endif; ?>
                     </ul>
                     <?php endif; ?>

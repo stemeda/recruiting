@@ -43,25 +43,14 @@ use App\Model\Entity\User;
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Bewerbermanagement</a>
+                    <?= $this->Html->link('Bewerbermanagement', ['controller' => 'start', 'action' => 'index', 'prefix' => false], ['class' => 'navbar-brand'])?>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <?php if (User::checkCandidate($userSession)): ?>
                         <ul class="nav navbar-nav">
-
-                            <li class="active"><a href="#">Settings</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meine Bewerbungen <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><?= $this->Html->link('Anzeigen', ['controller' => 'start', 'action' => 'open_applications'])?></a></li>
-                                    <li><a href="#">hinzufügen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Noch was</a></li>
-                                </ul>
-                            </li>
+                            <li><?= $this->Html->link('Meine Bewerbungen', ['controller' => 'start', 'action' => 'open_applications'])?></li>
                         </ul>
                     <?php endif; ?>
                     <ul class="nav navbar-nav navbar-right">

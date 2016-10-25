@@ -16,7 +16,8 @@ class CandidateControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.users'
+        'app.users',
+        'app.candidates'
     ];
 
     /**
@@ -38,7 +39,7 @@ class CandidateControllerTest extends IntegrationTestCase
     public function testLoginPost()
     {
         $table = \Cake\ORM\TableRegistry::get('Users');
-        $user = $table->find()->where(['type' => 'candidate', 'active' => true])->first();
+        $user = $table->find()->where(['type' => 'candidate', 'active' => true])->contain('Candidates')->first();
         $user->password = 'test';
         $user = $table->save($user);
         $data = [
