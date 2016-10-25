@@ -4,7 +4,7 @@
     <div class="panel-heading">
         <?php if ($candidateDescriptions->multiple): ?>
             <div class="pull-right">
-                <span class="btn btn-default btn-xs glyphicon glyphicon-plus addPositionDescription" title="Wert hinzufügen" data-count="1" data-id="<?=$candidateDescriptions->id?>"></span>
+                <span class="btn btn-default btn-xs glyphicon glyphicon-plus addCandidateDescription" title="Wert hinzufügen" data-count="1" data-id="<?=$candidateDescriptions->id?>"></span>
             </div>
         <?php endif; ?>
         <?= $candidateDescriptions->name ?>

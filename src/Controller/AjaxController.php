@@ -26,7 +26,7 @@ class AjaxController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('load_position_description_view');
+        $this->Auth->allow();
     }
 
     /**
@@ -51,6 +51,29 @@ class AjaxController extends AppController
 
         $this->set('positionDescriptions', $positionDescriptions);
         $this->set('count', $count);
-        $this->set('_serialize', ['positionDescriptions']);
+    }
+
+    /**
+     * the index action
+     *
+     * @param int $id id of PositionDescription to load
+     * @param int $count the current position
+     *
+     * @return void
+     */
+    public function loadCandidateDescriptionView($id = null, $count = null)
+    {
+        if ($id === null || $count === null) {
+            throw new \Cake\Network\Exception\NotFoundException();
+        }
+        $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->get($id, [
+            'contain' => [
+                'CandidateDescriptionValues',
+                'CandidateDescriptionExtras'
+            ]
+        ]);
+
+        $this->set('candidateDescriptions', $candidateDescriptions);
+        $this->set('count', $count);
     }
 }
