@@ -41,6 +41,8 @@ class CandidateDescriptionsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->addBehavior('Search.Search');
+
         $this->hasMany('CandidateDescriptionValues', [
             'foreignKey' => 'candidate_descriptions_id',
             'joinType' => 'LEFT'
@@ -49,6 +51,23 @@ class CandidateDescriptionsTable extends Table
             'foreignKey' => 'candidate_descriptions_id',
             'joinType' => 'LEFT'
         ]);
+
+        // Setup search filter using search manager
+        $this->searchManager()
+                // Here we will alias the 'q' query param to search the `Articles.title`
+                // field and the `Articles.content` field, using a LIKE match, with `%`
+                // both before and after.
+                ->add('name', 'Search.Like', [
+                    'before' => true,
+                    'after' => true,
+                    'comparison' => 'LIKE',
+                    'field' => ['name'],
+                    'filterEmpty' => true
+                ])
+                ->add('multiple', 'Search.Boolean', [
+                    'field' => 'multiple',
+                    'filterEmpty' => true
+                ]);
     }
 
     /**
