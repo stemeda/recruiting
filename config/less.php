@@ -37,7 +37,7 @@ return array (
     'headings-font-weight' => '500',
     'headings-line-height' => '1.1',
     'headings-color' => 'inherit',
-    'icon-font-path' => '"../fonts/"',
+    'icon-font-path' => '"../../fonts/"',
     'icon-font-name' => '"glyphicons-halflings-regular"',
     'icon-font-svg-id' => '"glyphicons_halflingsregular"',
     'padding-base-vertical' => '6px',
