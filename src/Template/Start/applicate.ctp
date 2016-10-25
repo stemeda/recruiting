@@ -1,5 +1,5 @@
 
-<?= $this->Form->create($candidate) ?>
+<?= $this->Form->create($candidate, ['type' => 'file']) ?>
 <?= $this->Form->hidden('id') ?>
 <?= $this->Form->input('candidate.applications.0.positions_id', ['value' => $position->id, 'type' => 'hidden']) ?>
 <?= $this->Form->input('firstname') ?>
@@ -43,6 +43,15 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<?php
+echo $this->element(
+    'Attachments.attachmentList',
+    [
+        'entity' => null
+    ]
+);
+?>
 
 <?= $this->Form->button('Speichern') ?>
 <?= $this->Form->end() ?>

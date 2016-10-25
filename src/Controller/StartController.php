@@ -73,6 +73,7 @@ class StartController extends AppController
         $this->loadModel('Users');
         $this->loadModel('PositionDescriptions');
         $this->loadModel('CandidateDescriptions');
+        $this->loadModel('Applications');
         $position = $this->Positions->get($id, [
             'contain' => [
                 'CandidateDescriptionValues',
@@ -127,6 +128,8 @@ class StartController extends AppController
         );
         if ($this->request->is(['post', 'put'])) {
             $requestData = $this->request->data;
+            $requestData['candidate']['applications'][0]['attachments'] = $requestData['attachments'];
+            unset($requestData['attachments']);
             foreach ($requestData['candidate']['applications'][0]['applications_position_description_values'] as $key => $value) {
                 if ($value['positions_description_values_id'] === '') {
                     unset($requestData['candidate']['applications'][0]['applications_position_description_values'][$key]);
@@ -144,15 +147,18 @@ class StartController extends AppController
                 [
                     'associated' => [
                         'Candidates.Applications.ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras',
+                        'Candidates.Applications.Attachments',
                         'Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras',
                     ]
                 ]
             );
+            $this->Applications->setAttachmentsDefaultValues($user->candidate->applications[0]);
             if ($this->Users->save($user, ['associated' => [
                 'Candidates',
                 'Candidates.Applications',
                 'Candidates.Applications.ApplicationsPositionDescriptionValues',
                 'Candidates.Applications.ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras',
+                'Candidates.Applications.Attachments',
                 'Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras',
                 ]])) {
                 $this->Flash->success('Bewerbung gespeichert!');

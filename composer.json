@@ -18,7 +18,8 @@
         "dompdf/dompdf": "^0.7.0",
         "friendsofcake/search": "^2.1",
         "codekanzlei/cake-frontend-bridge": "^1.0",
-        "oyejorge/less.php": "v1.7.0.10"
+        "oyejorge/less.php": "v1.7.0.10",
+        "imagine/imagine": "^0.6.3"
     },
     "require-dev": {
         "psy/psysh": "@stable",

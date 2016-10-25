@@ -14,6 +14,7 @@ use App\Model\Entity\User;
 
         <?= $this->Html->css('frontend/bootstrap.css') ?>
         <?= $this->Html->css('backend.css') ?>
+        <?= $this->Html->css('/attachments/css/FileUpload.css') ?>
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>

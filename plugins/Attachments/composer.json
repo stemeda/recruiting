@@ -1,0 +1,23 @@
+{
+    "name": "your-name-here/Attachments",
+    "description": "Attachments plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.4.16",
+        "cakephp/cakephp": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Attachments\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Attachments\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}

@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Positions
  * @property \Cake\ORM\Association\BelongsTo $ApplicationStatus
  * @property \Cake\ORM\Association\BelongsToMany $PositionDescriptionValues
+ * @property \Cake\ORM\Association\HasMany $Attachments
  *
  * @method \App\Model\Entity\Application get($primaryKey, $options = [])
  * @method \App\Model\Entity\Application newEntity($data = null, array $options = [])
@@ -42,6 +43,8 @@ class ApplicationsTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->addBehavior('Attachments.Attachments');
 
         $this->belongsTo('Candidates', [
             'foreignKey' => 'candidates_id',
