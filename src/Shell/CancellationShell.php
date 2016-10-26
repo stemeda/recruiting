@@ -26,9 +26,9 @@ class CancellationShell extends Shell
     /**
      * main() method.
      *
-     * @return bool|int Success or error code.
+     * @return bool|int|void Success or error code.
      */
-    public function main() 
+    public function main()
     {
         $this->out($this->OptionParser->help());
     }

@@ -76,14 +76,14 @@ class PositionsController extends BackendController
                 'ApplicationStatus.closes_application' => false
             ]);
         $position = $this->Positions->get(
-                $id,
-                [
-                    'contain' => [
-                        'PositionsPositionDescriptionValues',
-                        'PositionsCandidateDescriptionValues',
-                        ]
-                ]
-                );
+            $id,
+            [
+                'contain' => [
+                    'PositionsPositionDescriptionValues',
+                    'PositionsCandidateDescriptionValues',
+                    ]
+            ]
+        );
         $valuesAllNeestedSet = [];
         $valuesNotAllNeestedSet = [];
         foreach ($applications as $applicationKey => $application) {
@@ -135,7 +135,6 @@ class PositionsController extends BackendController
      */
     protected function _calculateApplicationValue(Application $application, Position $position)
     {
-
         $result = [
             'value' => 0,
             'application' => $application,
@@ -168,6 +167,7 @@ class PositionsController extends BackendController
                 }
             }
         }
+
         return $result;
     }
 
@@ -208,14 +208,14 @@ class PositionsController extends BackendController
     public function edit($id = null)
     {
         $position = $this->Positions->get(
-                $id,
-                [
-                    'contain' => [
-                        'PositionsPositionDescriptionValues',
-                        'PositionsCandidateDescriptionValues'
-                    ]
+            $id,
+            [
+                'contain' => [
+                    'PositionsPositionDescriptionValues',
+                    'PositionsCandidateDescriptionValues'
                 ]
-            );
+            ]
+        );
         if ($this->request->is('post')) {
             $position = $this->Positions->patchEntity($position, $this->request->data);
 
