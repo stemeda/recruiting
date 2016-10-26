@@ -13,12 +13,15 @@ use App\Model\Entity\User;
         <?= $this->Html->meta('icon') ?>
 
         <?= $this->Html->css('frontend/bootstrap.css') ?>
+        <?= $this->Html->css('bootstrap-datetimepicker.min.css') ?>
         <?= $this->Html->css('backend.css') ?>
         <?= $this->Html->css('/attachments/css/FileUpload.css') ?>
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
         <?= $this->Html->script('tmpl.min.js') ?>
+        <?= $this->Html->script('moment.js') ?>
+        <?= $this->Html->script('bootstrap-datetimepicker.min.js') ?>
 
         <?php if(isset($this->FrontendBridge)) {
             $this->FrontendBridge->init($frontendData);

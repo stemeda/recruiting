@@ -1,118 +1,91 @@
 
-<div class="panel panel-default">
-    <!-- Panel header -->
-    <div class="panel-heading">
-        <h3 class="panel-title"><?= h($positionDescription->name) ?></h3>
+<?= $this->Form->create($position); ?>
+<fieldset>
+    <legend><?= __('Add {0}', ['Position']) ?></legend>
+    <?= $this->Form->input('name'); ?>
+    <?= $this->Form->textarea('description'); ?>
+    <?= $this->Form->input('awailable_from'); ?>
+    <?= $this->Form->input('awailable_until'); ?>
+    <?= $this->Form->input('active'); ?>
+    Kandidatenbeschreibungen:
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <?php foreach ($candidateDescriptions as $key => $description): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingCandidateDescriptions<?=$key?>">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCandidateDescriptions<?=$key?>" aria-expanded="true" aria-controls="collapseCandidateDescriptions<?=$key?>">
+                        <?=$description->name?>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseCandidateDescriptions<?=$key?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCandidateDescriptions<?=$key?>">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Wert</th>
+                                <th>Voraussetzug für die Stelle</th>
+                                <th>Wichtigkeit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($description->candidate_description_values as $valueKey => $value): ?>
+                            <?=$this->Form->input('positions_candidate_description_values.' . $value->id . '.candidate_description_values_id', ['value' => $value->id, 'type' => 'hidden'])?>
+                            <tr>
+                                <td><?=$value->name?></td>
+                                <td><?=$this->Form->checkbox('positions_candidate_description_values.' . $value->id . '.needed');?></td>
+                                <td><?=$this->Form->input('positions_candidate_description_values.' . $value->id . '.importance', ['type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'value' => 0, 'label' => false]);?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
     </div>
-    <table class="table table-striped" cellpadding="0" cellspacing="0">
-        <tr>
-            <td><?= __('Name') ?></td>
-            <td><?= h($positionDescription->name) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Description') ?></td>
-            <td><?= h($positionDescription->description) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Id') ?></td>
-            <td><?= $this->Number->format($positionDescription->id) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Awailable From') ?></td>
-            <td><?= h($positionDescription->awailable_from) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Awaibale Until') ?></td>
-            <td><?= h($positionDescription->awaibale_until) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Created') ?></td>
-            <td><?= h($positionDescription->created) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Modified') ?></td>
-            <td><?= h($positionDescription->modified) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Active') ?></td>
-            <td><?= $positionDescription->active ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
-</div>
 
-<div class="panel panel-default">
-    <!-- Panel header -->
-    <div class="panel-heading">
-        <h3 class="panel-title"><?= __('Related CandidateDescriptionValues') ?></h3>
+
+
+    Positionsbeschreibungen:
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <?php foreach ($positionDescriptions as $key => $description): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingPositionDescriptions<?=$key?>">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePositionDescriptions<?=$key?>" aria-expanded="true" aria-controls="collapsePositionDescriptions<?=$key?>">
+                        <?=$description->name?>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapsePositionDescriptions<?=$key?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPositionDescriptions<?=$key?>">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Wert</th>
+                                <th>Voraussetzug für die Stelle</th>
+                                <th>Wichtigkeit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($description->position_description_values as $valueKey => $value): ?>
+                            <?=$this->Form->input('positions_position_description_values.' . $value->id . '.positions_description_values_id', ['value' => $value->id, 'type' => 'hidden'])?>
+                            <tr>
+                                <td><?=$value->name?></td>
+                                <td><?=$this->Form->checkbox('positions_position_description_values.' . $value->id . '.needed');?></td>
+                                <td><?=$this->Form->input('positions_position_description_values.' . $value->id . '.importance', ['type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'value' => 0, 'label' => false]);?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
     </div>
-    <?php if (!empty($positionDescription->candidate_description_values)): ?>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Candidate Descriptions Id') ?></th>
-                <th><?= __('Name') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($positionDescription->candidate_description_values as $candidateDescriptionValues): ?>
-                <tr>
-                    <td><?= h($candidateDescriptionValues->id) ?></td>
-                    <td><?= h($candidateDescriptionValues->candidate_descriptions_id) ?></td>
-                    <td><?= h($candidateDescriptionValues->name) ?></td>
-                    <td><?= h($candidateDescriptionValues->created) ?></td>
-                    <td><?= h($candidateDescriptionValues->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'view', $candidateDescriptionValues->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'edit', $candidateDescriptionValues->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
-                        <?= $this->Form->postLink('', ['controller' => 'CandidateDescriptionValues', 'action' => 'delete', $candidateDescriptionValues->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidateDescriptionValues->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p class="panel-body">no related CandidateDescriptionValues</p>
-    <?php endif; ?>
-</div>
-<div class="panel panel-default">
-    <!-- Panel header -->
-    <div class="panel-heading">
-        <h3 class="panel-title"><?= __('Related PositionDescriptionValues') ?></h3>
-    </div>
-    <?php if (!empty($positionDescription->position_description_values)): ?>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Positions Descriptions Id') ?></th>
-                <th><?= __('Name') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($positionDescription->position_description_values as $positionDescriptionValues): ?>
-                <tr>
-                    <td><?= h($positionDescriptionValues->id) ?></td>
-                    <td><?= h($positionDescriptionValues->positions_descriptions_id) ?></td>
-                    <td><?= h($positionDescriptionValues->name) ?></td>
-                    <td><?= h($positionDescriptionValues->created) ?></td>
-                    <td><?= h($positionDescriptionValues->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'PositionDescriptionValues', 'action' => 'view', $positionDescriptionValues->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                        <?= $this->Html->link('', ['controller' => 'PositionDescriptionValues', 'action' => 'edit', $positionDescriptionValues->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
-                        <?= $this->Form->postLink('', ['controller' => 'PositionDescriptionValues', 'action' => 'delete', $positionDescriptionValues->id], ['confirm' => __('Are you sure you want to delete # {0}?', $positionDescriptionValues->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p class="panel-body">no related PositionDescriptionValues</p>
-    <?php endif; ?>
-</div>
+
+<?= $this->CKEditor->replace('description'); ?>
+</fieldset>
+<?= $this->Form->button(__("Add")); ?>
+<?= $this->Form->end() ?>

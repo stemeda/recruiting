@@ -13,7 +13,15 @@ use Cake\Utility\Hash;
     <?php elseif ($extra->type === 'text'): ?>
         <?= $this->Form->input('candidate.applications.0.applications_position_description_values.' . $number . '.appls_pos_des_values_pos_des_extras.' . $key . '.value', ['label' => $extra->name]); ?>
     <?php elseif ($extra->type === 'date'): ?>
-        <?= $this->Form->input('candidate.applications.0.applications_position_description_values.' . $number . '.appls_pos_des_values_pos_des_extras.' . $key . '.value', ['type' => 'date', 'label' => $extra->name]); ?>
+        <?= $this->Form->input('candidate.applications.0.applications_position_description_values.' . $number . '.appls_pos_des_values_pos_des_extras.' . $key . '.value', ['label' => $extra->name, 'class' => 'addDatePicker']); ?>
+
+        <script type="text/javascript">
+            $(function () {
+                $('.addDatePicker').datetimepicker({
+                    format: 'DD.MM.YYYY'
+                });
+            });
+        </script>
     <?php endif; ?>
 <?php endforeach; ?>
 <span class="hidden counterForPositionDesciptions" />

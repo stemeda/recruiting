@@ -1,5 +1,5 @@
 
-<?= $this->Form->create($candidate, ['type' => 'file']) ?>
+<?= $this->Form->create($candidate, ['type' => 'file', 'novalidate' => true]) ?>
 <?= $this->Form->hidden('id') ?>
 <?= $this->Form->input('candidate.applications.0.positions_id', ['value' => $position->id, 'type' => 'hidden']) ?>
 <?= $this->Form->input('firstname') ?>
@@ -23,7 +23,13 @@
             <?= $candidateDescription->name ?>
         </div>
         <div class="panel-body">
-            <?= $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key]) ?>
+            <?php
+            foreach ($candidate->candidate->candidates_candidate_description_values as $candidatesCandidateDescriptionValue) {
+                debug($candidatesCandidateDescriptionValue);
+                debug($candidateDescription);
+            }
+            ?>
+            <?= $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key, 'candidate' => $candidate->candidate]) ?>
         </div>
     </div>
 <?php endforeach; ?>

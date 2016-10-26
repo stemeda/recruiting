@@ -43,7 +43,7 @@ class CandidatesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasOne('Users', [
+        $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);

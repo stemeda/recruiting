@@ -122,13 +122,19 @@ class StartController extends AppController
             $this->Auth->user('id'),
             [
                 'contain' => [
-                    'Candidates'
+                    'Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions',
+                    'Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras',
                 ]
             ]
         );
         if ($this->request->is(['post', 'put'])) {
             $requestData = $this->request->data;
             $requestData['candidate']['applications'][0]['attachments'] = $requestData['attachments'];
+            foreach ($requestData['candidate']['applications'][0]['attachments'] as $attachmentKey => $attachment) {
+                if ($attachment['error'] === UPLOAD_ERR_NO_FILE) {
+                    unset($requestData['candidate']['applications'][0]['attachments'][$attachmentKey]);
+                }
+            }
             unset($requestData['attachments']);
             foreach ($requestData['candidate']['applications'][0]['applications_position_description_values'] as $key => $value) {
                 if ($value['positions_description_values_id'] === '') {

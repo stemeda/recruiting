@@ -2,6 +2,10 @@
 
 namespace App\Controller\Backend;
 
+use App\Model\Entity\Application;
+use App\Model\Entity\Position;
+use Cake\ORM\TableRegistry;
+
 /**
  * Positions Controller
  *
@@ -32,11 +36,23 @@ class PositionsController extends BackendController
      */
     public function view($id = null)
     {
-        $position = $this->Positions->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'PositionDescriptionValues']
-        ]);
+        $position = $this->Positions->get($id, ['contain' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']]);
+        if ($this->request->is('post')) {
+            $position = $this->Positions->patchEntity($position, $this->request->data);
 
-        $this->set('position', $position);
+            if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                debug($position);
+                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+            }
+        }
+        //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
+        $positionDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
+        $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->find('all')->contain(['CandidateDescriptionValues']);
+        $this->set(compact('position', 'positionDescriptions', 'candidateDescriptions'));
         $this->set('_serialize', ['position']);
     }
 
@@ -49,13 +65,110 @@ class PositionsController extends BackendController
      */
     public function applications($id = null)
     {
-        $applications = $this->Positions
-            ->Applications
+        $applications = TableRegistry::get('Applications')
             ->find('all')
-            ->where(['positions_id' => $id])
-            ->contain([]);
+            ->contain('ApplicationsPositionDescriptionValues')
+            ->contain('ApplicationStatus')
+            ->contain('Candidates.CandidatesCandidateDescriptionValues')
+            ->contain('Candidates.Users')
+            ->where([
+                'positions_id' => $id,
+                'ApplicationStatus.closes_application' => false
+            ]);
+        $position = $this->Positions->get(
+                $id,
+                [
+                    'contain' => [
+                        'PositionsPositionDescriptionValues',
+                        'PositionsCandidateDescriptionValues',
+                        ]
+                ]
+                );
+        $valuesAllNeestedSet = [];
+        $valuesNotAllNeestedSet = [];
+        foreach ($applications as $applicationKey => $application) {
+            $result = $this->_calculateApplicationValue($application, $position);
+            if ($result['allNeededSet']) {
+                $valuesAllNeestedSet[$applicationKey] = $result;
+            } else {
+                $valuesNotAllNeestedSet[$applicationKey] = $result;
+            }
+        }
+        $valuesAllNeestedSet = \Cake\Utility\Hash::sort($valuesAllNeestedSet, '{n}.value', 'desc', 'numeric');
+        $valuesNotAllNeestedSet = \Cake\Utility\Hash::sort($valuesNotAllNeestedSet, '{n}.value', 'desc', 'numeric');
+        $this->set('valuesAllNeestedSet', $valuesAllNeestedSet);
+        $this->set('valuesNotAllNeestedSet', $valuesNotAllNeestedSet);
+    }
 
-        $this->set('applications', $applications);
+    /**
+     * applicationView method
+     *
+     * @param string|null $id application id.
+     * @return \Cake\Network\Response|null|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function applicationView($id = null)
+    {
+        $application = TableRegistry::get('Applications')
+            ->find('all')
+            ->contain('ApplicationsPositionDescriptionValues.PositionDescriptionValues.PositionDescriptions')
+            ->contain('ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras.PositionDescriptionExtras')
+            ->contain('ApplicationStatus')
+            ->contain('Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions')
+            ->contain('Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras.CandidateDescriptionExtras')
+            ->contain('Candidates.Users')
+            ->where([
+                'Applications.id' => $id,
+                'ApplicationStatus.closes_application' => false
+            ])
+            ->first();
+        $this->set('application', $application);
+    }
+
+    /**
+     * calculate the value of an application out of the position.
+     * returns the main Information of the position and the value
+     *
+     * @param Application $application the application
+     * @param Position $position the position
+     * @return array
+     */
+    protected function _calculateApplicationValue(Application $application, Position $position)
+    {
+
+        $result = [
+            'value' => 0,
+            'application' => $application,
+            'position' => $position,
+            'allNeededSet' => true,
+        ];
+        foreach ($position->positions_candidate_description_values as $key => $positionsCandidateDescriptionValue) {
+            $candidatesCandidateDescriptionValues = $application->candidate->candidates_candidate_description_values;
+            $found = false;
+            foreach ($candidatesCandidateDescriptionValues as $candidatesCandidateDescriptionValue) {
+                if ($candidatesCandidateDescriptionValue->candidate_description_values_id === $positionsCandidateDescriptionValue->candidate_description_values_id) {
+                    $found = true;
+                    $result['value'] += $positionsCandidateDescriptionValue->importance;
+                }
+                if (!$found && $positionsCandidateDescriptionValue->needed) {
+                    $result['allNeededSet'] = false;
+                }
+            }
+        }
+        foreach ($position->positions_position_description_values as $key => $positionsPositionDescriptionValues) {
+            $applicationPositionDescriptionValues = $application->applications_position_description_values;
+            $found = false;
+            foreach ($applicationPositionDescriptionValues as $applicationPositionDescriptionValue) {
+                if ($applicationPositionDescriptionValue->positions_description_values_id === $positionsPositionDescriptionValues->positions_description_values_id) {
+                    $found = true;
+                    $result['value'] += $positionsPositionDescriptionValues->importance;
+                }
+                if (!$found && $positionsPositionDescriptionValues->needed) {
+                    $result['allNeededSet'] = false;
+                }
+            }
+        }
+        return $result;
     }
 
     /**
@@ -94,12 +207,19 @@ class PositionsController extends BackendController
      */
     public function edit($id = null)
     {
-        $position = $this->Positions->get($id, [
-            'contain' => ['CandidateDescriptionValues', 'PositionDescriptionValues']
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        $position = $this->Positions->get(
+                $id,
+                [
+                    'contain' => [
+                        'PositionsPositionDescriptionValues',
+                        'PositionsCandidateDescriptionValues'
+                    ]
+                ]
+            );
+        if ($this->request->is('post')) {
             $position = $this->Positions->patchEntity($position, $this->request->data);
-            if ($this->Positions->save($position)) {
+
+            if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
                 $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
@@ -107,9 +227,10 @@ class PositionsController extends BackendController
                 $this->Flash->error(__('The position could not be saved. Please, try again.'));
             }
         }
-        $candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
-        $positionDescriptionValues = $this->Positions->PositionDescriptionValues->find('list', ['limit' => 200]);
-        $this->set(compact('position', 'candidateDescriptionValues', 'positionDescriptionValues'));
+        //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
+        $positionDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
+        $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->find('all')->contain(['CandidateDescriptionValues']);
+        $this->set(compact('position', 'positionDescriptions', 'candidateDescriptions'));
         $this->set('_serialize', ['position']);
     }
 
