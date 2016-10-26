@@ -72,11 +72,11 @@ class CandidateController extends BackendController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->User->patchEntity($user, $this->request->data);
             if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success('Der Kandidat wurde gespeichert');
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error('Der Kandidate konnte nicht gespeichert werden.');
             }
         }
         $this->set(compact('user'));
@@ -95,9 +95,9 @@ class CandidateController extends BackendController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->User->get($id);
         if ($this->User->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success('Der Kandidat wurde gelöscht.');
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Kandidat konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

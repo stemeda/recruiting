@@ -56,11 +56,11 @@ class ApplicationStatusController extends BackendController
         if ($this->request->is('post')) {
             $applicationStatus = $this->ApplicationStatus->patchEntity($applicationStatus, $this->request->data);
             if ($this->ApplicationStatus->save($applicationStatus)) {
-                $this->Flash->success(__('Your Status has been saved.'));
+                $this->Flash->success('Status gespeichert');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to add your Status.'));
+            $this->Flash->error('Status konnte nicht gespeichert werden.');
         }
         $this->set('applicationStatus', $applicationStatus);
     }
@@ -77,11 +77,11 @@ class ApplicationStatusController extends BackendController
         if ($this->request->is(['post', 'put'])) {
             $this->ApplicationStatus->patchEntity($applicationStatus, $this->request->data);
             if ($this->ApplicationStatus->save($applicationStatus)) {
-                $this->Flash->success(__('Your status has been updated.'));
+                $this->Flash->success('Status gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to update your status.'));
+            $this->Flash->error('Status konnte nicht gespeichert werden.');
         }
 
         $this->set('applicationStatus', $applicationStatus);
@@ -98,9 +98,9 @@ class ApplicationStatusController extends BackendController
         $this->request->allowMethod(['post', 'delete']);
         $applicationStatus = $this->ApplicationStatus->get($id);
         if ($this->ApplicationStatus->delete($applicationStatus)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success('Status gelöscht');
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Status konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

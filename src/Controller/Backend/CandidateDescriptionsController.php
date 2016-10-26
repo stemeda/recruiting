@@ -75,11 +75,11 @@ class CandidateDescriptionsController extends BackendController
             }
             $candidateDescription = $this->CandidateDescriptions->patchEntity($candidateDescription, $data);
             if ($this->CandidateDescriptions->save($candidateDescription, ['associated' => ['CandidateDescriptionValues', 'CandidateDescriptionExtras']])) {
-                $this->Flash->success(__('The candidate has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gelöscht werden.');
             }
         }
         $this->set(compact('candidateDescription'));
@@ -112,7 +112,7 @@ class CandidateDescriptionsController extends BackendController
             }
             $candidateDescription = $this->CandidateDescriptions->patchEntity($candidateDescription, $data);
             if ($this->CandidateDescriptions->save($candidateDescription, ['associated' => ['CandidateDescriptionValues', 'CandidateDescriptionExtras']])) {
-                $this->Flash->success(__('The candidate has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {

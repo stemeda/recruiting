@@ -75,7 +75,7 @@ class PositionDescriptionsController extends BackendController
             }
             $positionDescription = $this->PositionDescriptions->patchEntity($positionDescription, $data);
             if ($this->PositionDescriptions->save($positionDescription, ['associated' => ['PositionDescriptionValues', 'PositionDescriptionExtras']])) {
-                $this->Flash->success(__('The position has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -112,7 +112,7 @@ class PositionDescriptionsController extends BackendController
             }
             $positionDescription = $this->PositionDescriptions->patchEntity($positionDescription, $data);
             if ($this->PositionDescriptions->save($positionDescription, ['associated' => ['PositionDescriptionValues', 'PositionDescriptionExtras']])) {
-                $this->Flash->success(__('The position has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {

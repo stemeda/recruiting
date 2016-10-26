@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsToMany $PositionDescriptionValues
  * @property \Cake\ORM\Association\HasMany $PositionsPositionDescriptionValues
  * @property \Cake\ORM\Association\HasMany $PositionsCandidateDescriptionValues
+ * @property \Cake\ORM\Association\HasMany $Applications
  *
  * @method \App\Model\Entity\Position get($primaryKey, $options = [])
  * @method \App\Model\Entity\Position newEntity($data = null, array $options = [])
@@ -58,6 +59,10 @@ class PositionsTable extends Table
             'joinType' => 'LEFT'
         ]);
         $this->hasMany('PositionsCandidateDescriptionValues', [
+            'foreignKey' => 'positions_id',
+            'joinType' => 'LEFT'
+        ]);
+        $this->hasMany('Applications', [
             'foreignKey' => 'positions_id',
             'joinType' => 'LEFT'
         ]);

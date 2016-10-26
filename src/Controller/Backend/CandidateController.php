@@ -52,12 +52,12 @@ class CandidateController extends BackendController
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
 
             if ($this->Candidates->save($candidate, ['associated' => ['CandidateDescriptionValues']])) {
-                $this->Flash->success(__('The candidate has been saved.'));
+                $this->Flash->success('Der Kandidat wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
                 debug($candidate);
-                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
+                $this->Flash->error('Der Kandidat konnte nicht gespeichert werden.');
             }
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
@@ -81,11 +81,11 @@ class CandidateController extends BackendController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
             if ($this->Candidates->save($candidate)) {
-                $this->Flash->success(__('The candidate has been saved.'));
+                $this->Flash->success('Der Kandidat wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
+                $this->Flash->error('Der Kandidat konnte nicht gespeichert werden.');
             }
         }
         $candidateDescriptionValues = $this->Candidates->CandidateDescriptionValues->find('list', ['limit' => 200]);
@@ -106,9 +106,9 @@ class CandidateController extends BackendController
         $this->request->allowMethod(['post', 'delete']);
         $candidate = $this->Candidates->get($id);
         if ($this->Candidates->delete($candidate)) {
-            $this->Flash->success(__('The candidate has been deleted.'));
+            $this->Flash->success('Der Kandidat wurde gelöscht.');
         } else {
-            $this->Flash->error(__('The candidate could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Kandidat konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

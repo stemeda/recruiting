@@ -41,6 +41,24 @@ class PositionsController extends BackendController
     }
 
     /**
+     * applications method
+     *
+     * @param string|null $id Position id.
+     * @return \Cake\Network\Response|null|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function applications($id = null)
+    {
+        $applications = $this->Positions
+            ->Applications
+            ->find('all')
+            ->where(['positions_id' => $id])
+            ->contain([]);
+
+        $this->set('applications', $applications);
+    }
+
+    /**
      * Add method
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
@@ -52,7 +70,7 @@ class PositionsController extends BackendController
             $position = $this->Positions->patchEntity($position, $this->request->data);
 
             if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
-                $this->Flash->success(__('The position has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -82,7 +100,7 @@ class PositionsController extends BackendController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $position = $this->Positions->patchEntity($position, $this->request->data);
             if ($this->Positions->save($position)) {
-                $this->Flash->success(__('The position has been saved.'));
+                $this->Flash->success('Der Datensatz wurde gespeichert.');
 
                 return $this->redirect(['action' => 'index']);
             } else {
