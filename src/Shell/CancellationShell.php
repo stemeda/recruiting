@@ -67,7 +67,6 @@ class CancellationShell extends Shell
                     ->subject('Absage Bewerbung')
                     ->send();
             }
-
         }
     }
 

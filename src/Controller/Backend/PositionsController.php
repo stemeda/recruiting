@@ -4,6 +4,7 @@ namespace App\Controller\Backend;
 
 use App\Model\Entity\Application;
 use App\Model\Entity\Position;
+use Cake\Mailer\Email;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -66,22 +67,22 @@ class PositionsController extends BackendController
     public function applications($id = null)
     {
         $applications = TableRegistry::get('Applications')
-            ->find('all')
-            ->contain('ApplicationsPositionDescriptionValues')
-            ->contain('ApplicationStatus')
-            ->contain('Candidates.CandidatesCandidateDescriptionValues')
-            ->contain('Candidates.Users')
-            ->where([
-                'positions_id' => $id,
-                'ApplicationStatus.closes_application' => false
-            ]);
+                ->find('all')
+                ->contain('ApplicationsPositionDescriptionValues')
+                ->contain('ApplicationStatus')
+                ->contain('Candidates.CandidatesCandidateDescriptionValues')
+                ->contain('Candidates.Users')
+                ->where([
+                    'positions_id' => $id,
+                    'ApplicationStatus.closes_application' => false
+                ]);
         $position = $this->Positions->get(
             $id,
             [
                 'contain' => [
                     'PositionsPositionDescriptionValues',
                     'PositionsCandidateDescriptionValues',
-                    ]
+                ]
             ]
         );
         $valuesAllNeestedSet = [];
@@ -110,18 +111,18 @@ class PositionsController extends BackendController
     public function applicationView($id = null)
     {
         $application = TableRegistry::get('Applications')
-            ->find('all')
-            ->contain('ApplicationsPositionDescriptionValues.PositionDescriptionValues.PositionDescriptions')
-            ->contain('ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras.PositionDescriptionExtras')
-            ->contain('ApplicationStatus')
-            ->contain('Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions')
-            ->contain('Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras.CandidateDescriptionExtras')
-            ->contain('Candidates.Users')
-            ->where([
-                'Applications.id' => $id,
-                'ApplicationStatus.closes_application' => false
-            ])
-            ->first();
+                ->find('all')
+                ->contain('ApplicationsPositionDescriptionValues.PositionDescriptionValues.PositionDescriptions')
+                ->contain('ApplicationsPositionDescriptionValues.ApplsPosDesValuesPosDesExtras.PositionDescriptionExtras')
+                ->contain('ApplicationStatus')
+                ->contain('Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions')
+                ->contain('Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras.CandidateDescriptionExtras')
+                ->contain('Candidates.Users')
+                ->where([
+                    'Applications.id' => $id,
+                    'ApplicationStatus.closes_application' => false
+                ])
+                ->first();
         $this->set('application', $application);
     }
 
@@ -252,5 +253,93 @@ class PositionsController extends BackendController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * invite a application
+     *
+     * @param int $id id of the application to cancel
+     *
+     * @return void
+     */
+    public function invite($id = null)
+    {
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, ['contain' => ['Candidates.Users']]);
+
+        $data = [
+            'application_status_id' => 3,
+        ];
+        $applicationPatched = $this->Applications->patchEntity($application, $data);
+        if ($this->Applications->save($applicationPatched)) {
+            $email = new Email();
+            $t = $email->template('invite', 'default')
+                ->emailFormat('both')
+                ->to($application->candidate->user->email)
+                ->subject('Einladung zum Vorstellungsgespräch')
+                ->send();
+            $this->Flash->success('Bewerber eingeladen');
+        } else {
+            $this->Flash->error('Der Bewerber konnte nicht eingeladen werden');
+        }
+        $this->redirect(['action' => 'applications', $application->positions_id]);
+    }
+
+    /**
+     * invite a application
+     *
+     * @param int $id id of the application to cancel
+     *
+     * @return void
+     */
+    public function accept($id = null)
+    {
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, ['contain' => ['Candidates.Users']]);
+        $data = [
+            'application_status_id' => 5,
+        ];
+        $applicationPatched = $this->Applications->patchEntity($application, $data);
+        if ($this->Applications->save($applicationPatched)) {
+            $email = new Email();
+            $t = $email->template('accept', 'default')
+                ->emailFormat('both')
+                ->to($application->candidate->user->email)
+                ->subject('Zusage Stelle')
+                ->send();
+            $this->Flash->success('Bewerber eingestellt');
+        } else {
+            $this->Flash->error('Es ist ein Fehler aufgetreten.');
+        }
+        $this->redirect(['action' => 'applications', $application->positions_id]);
+    }
+
+    /**
+     * invite a application
+     *
+     * @param int $id id of the application to cancel
+     *
+     * @return void
+     */
+    public function cancel($id = null)
+    {
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, ['contain' => ['Candidates.Users']]);
+        $data = [
+            'application_status_id' => 2,
+        ];
+        $applicationPatched = $this->Applications->patchEntity($application, $data);
+        if ($this->Applications->save($applicationPatched)) {
+            $email = new Email();
+            $t = $email->template('cancel', 'default')
+                ->emailFormat('both')
+                ->to($application->candidate->user->email)
+                ->subject('Absage Bewerbung')
+                ->send();
+            $this->Flash->success('Absage verschickt');
+        } else {
+            $this->Flash->error('Es konnte keine Absage verschickt werden.');
+        }
+        $this->redirect(['action' => 'applications', $application->positions_id]);
     }
 }
