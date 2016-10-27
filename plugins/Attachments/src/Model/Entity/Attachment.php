@@ -87,6 +87,7 @@ class Attachment extends Entity
             'controller' => 'Attachments',
             'action' => 'preview',
             'prefix' => false,
+            '_full' => true,
             $this->id
         ]);
     }
@@ -117,6 +118,7 @@ class Attachment extends Entity
             'controller' => 'Attachments',
             'action' => 'download',
             'prefix' => false,
+            '_full' => true,
             $this->id
         ]);
     }

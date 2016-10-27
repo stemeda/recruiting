@@ -118,6 +118,7 @@ class PositionsController extends BackendController
                 ->contain('Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions')
                 ->contain('Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras.CandidateDescriptionExtras')
                 ->contain('Candidates.Users')
+                ->contain('Attachments')
                 ->where([
                     'Applications.id' => $id,
                     'ApplicationStatus.closes_application' => false
