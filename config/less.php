@@ -1,8 +1,8 @@
 <?php
 return array (
-  'less' =>
+  'less' => 
   array (
-    'gray-base' => '#123456',
+    'gray-base' => '#000',
     'gray-darker' => 'lighten(@gray-base, 13.5%)',
     'gray-dark' => 'lighten(@gray-base, 20%)',
     'gray' => 'lighten(@gray-base, 33.5%)',
@@ -35,7 +35,7 @@ return array (
     'line-height-computed' => 'floor((@font-size-base * @line-height-base))',
     'headings-font-family' => 'inherit',
     'headings-font-weight' => '500',
-    'headings-line-height' => '1.1',
+    'headings-line-height' => '',
     'headings-color' => 'inherit',
     'icon-font-path' => '"../../fonts/"',
     'icon-font-name' => '"glyphicons-halflings-regular"',
@@ -97,7 +97,7 @@ return array (
     'input-border-radius-small' => '@border-radius-small',
     'input-border-focus' => '#66afe9',
     'input-color-placeholder' => '#999',
-    'input-height-base' => 'ed + (@padding-base-vertical * 2) + 2)',
+    'input-height-base' => '(@line-height-computed + (@padding-base-vertical * 2) + 2)',
     'input-height-large' => '(ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2)',
     'input-height-small' => '(floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2)',
     'form-group-margin-bottom' => '15px',
@@ -106,6 +106,5 @@ return array (
     'input-group-addon-bg' => '@gray-lighter',
     'input-group-addon-border-color' => '@input-border',
     'cursor-disabled' => 'not-allowed',
-
   ),
 );
