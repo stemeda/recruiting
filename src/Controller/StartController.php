@@ -147,12 +147,14 @@ class StartController extends AppController
                 }
             }
             $requestData['candidate']['applications'][0]['application_status_id'] = 1;
-            list($day, $month, $year) = explode('.', $requestData['candidate']['applications'][0]['earliest_start']);
-            $requestData['candidate']['applications'][0]['earliest_start'] = [
-                'year' => $year,
-                'month' => $month,
-                'day' => $day
-            ];
+            if (substr_count($requestData['candidate']['applications'][0]['earliest_start'], '.') === 2) {
+                list($day, $month, $year) = explode('.', $requestData['candidate']['applications'][0]['earliest_start']);
+                $requestData['candidate']['applications'][0]['earliest_start'] = [
+                    'year' => $year,
+                    'month' => $month,
+                    'day' => $day
+                ];
+            }
             $user = $this->Users->patchEntity(
                 $user,
                 $requestData,

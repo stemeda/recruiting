@@ -1,3 +1,8 @@
+<?php
+
+use Cake\I18n\Number;
+?>
+
 <h1>Der Bewerber</h1>
 <table class="table">
     <tr>
@@ -45,8 +50,8 @@
             <td><?= $description->candidate_description_value->name ?></td>
             <td>
                 <dl class="dl-horizontal">
-                        <?php foreach ($description->cans_can_des_values_can_des_extras as $extra): ?>
-                        <dt><?=$extra->candidate_description_extra->name?></dt>
+                    <?php foreach ($description->cans_can_des_values_can_des_extras as $extra): ?>
+                        <dt><?= $extra->candidate_description_extra->name ?></dt>
                         <dd>
                             <?php
                             switch ($extra->candidate_description_extra->type) {
@@ -56,7 +61,6 @@
                                 default:
                                     break;
                             }
-
                             ?>
                         </dd>
                     <?php endforeach; ?>
@@ -65,6 +69,9 @@
         </tr>
     <?php endforeach; ?>
 </table>
+<?php if(count($application->candidate->candidates_candidate_description_values) === 0): ?>
+    Keine Bewerberbeschreibungen vorhanden.
+<?php endif; ?>
 <h1>Stellenbeschreibungen</h1>
 <table class="table">
     <?php foreach ($application->applications_position_description_values as $description): ?>
@@ -73,8 +80,8 @@
             <td><?= $description->position_description_value->name ?></td>
             <td>
                 <dl class="dl-horizontal">
-                        <?php foreach ($description->appls_pos_des_values_pos_des_extras as $extra): ?>
-                        <dt><?=$extra->position_description_extra->name?></dt>
+                    <?php foreach ($description->appls_pos_des_values_pos_des_extras as $extra): ?>
+                        <dt><?= $extra->position_description_extra->name ?></dt>
                         <dd>
                             <?php
                             switch ($extra->position_description_extra->type) {
@@ -84,7 +91,6 @@
                                 default:
                                     break;
                             }
-
                             ?>
                         </dd>
                     <?php endforeach; ?>
@@ -93,3 +99,37 @@
         </tr>
     <?php endforeach; ?>
 </table>
+<?php if(count($application->applications_position_description_values) === 0): ?>
+    Keine Stellenbeschreibungen vorhanden.
+<?php endif; ?>
+<h1>Dokumente</h1>
+<?php foreach ($application->attachments as $index => $file): ?>
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-md-6">
+                <?= $this->element('Attachments.filePreview', ['file' => $file]); ?>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>Dateiname:</dt>
+                    <dd><?= $file->name ?></dd>
+                    <dt>Größe:</dt>
+                    <dd><?= Number::toReadableSize($file->size) ?></dd>
+                    <dt>Datum</dt>
+                    <dd><?= $file->created ?></dd>
+                    <dt>&nbsp;</dt>
+                    <dd>
+                        <?=
+                        $this->Html->link(
+                                'Download', $file->downloadUrl(), ['class' => 'button', 'target' => '_blank']
+                        );
+                        ?>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </li>
+<?php endforeach; ?>
+<?php if(count($application->attachments) === 0): ?>
+    Keine Dokumente vorhanden.
+<?php endif; ?>

@@ -33,10 +33,8 @@
             <td><?= h($positionDescription->active) ?></td>
             <td><?= h($positionDescription->created) ?></td>
             <td class="actions">
-                <?= $this->Html->link('', ['action' => 'view', $positionDescription->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
                 <?= $this->Html->link('', ['action' => 'applications', $positionDescription->id], ['title' => 'Bewerbungen', 'class' => 'btn btn-default glyphicon glyphicon-sort-by-attributes-alt']) ?>
                 <?= $this->Html->link('', ['action' => 'edit', $positionDescription->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
-                <?= $this->Form->postLink('', ['action' => 'delete', $positionDescription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $positionDescription->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
             </td>
         </tr>
         <?php endforeach; ?>

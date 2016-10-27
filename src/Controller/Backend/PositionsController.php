@@ -28,34 +28,6 @@ class PositionsController extends BackendController
         $this->set('_serialize', ['positions']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Position id.
-     * @return \Cake\Network\Response|null|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $position = $this->Positions->get($id, ['contain' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']]);
-        if ($this->request->is('post')) {
-            $position = $this->Positions->patchEntity($position, $this->request->data);
-
-            if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
-                $this->Flash->success('Der Datensatz wurde gespeichert.');
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                debug($position);
-                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
-            }
-        }
-        //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
-        $positionDescriptions = \Cake\ORM\TableRegistry::get('PositionDescriptions')->find('all')->contain(['PositionDescriptionValues']);
-        $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->find('all')->contain(['CandidateDescriptionValues']);
-        $this->set(compact('position', 'positionDescriptions', 'candidateDescriptions'));
-        $this->set('_serialize', ['position']);
-    }
 
     /**
      * applications method
@@ -118,6 +90,7 @@ class PositionsController extends BackendController
                 ->contain('Candidates.CandidatesCandidateDescriptionValues.CandidateDescriptionValues.CandidateDescriptions')
                 ->contain('Candidates.CandidatesCandidateDescriptionValues.CansCanDesValuesCanDesExtras.CandidateDescriptionExtras')
                 ->contain('Candidates.Users')
+                ->contain('Attachments')
                 ->where([
                     'Applications.id' => $id,
                     'ApplicationStatus.closes_application' => false
@@ -233,26 +206,6 @@ class PositionsController extends BackendController
         $candidateDescriptions = \Cake\ORM\TableRegistry::get('CandidateDescriptions')->find('all')->contain(['CandidateDescriptionValues']);
         $this->set(compact('position', 'positionDescriptions', 'candidateDescriptions'));
         $this->set('_serialize', ['position']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Position id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $position = $this->Positions->get($id);
-        if ($this->Positions->delete($position)) {
-            $this->Flash->success('Der Datensatz wurde gelöscht.');
-        } else {
-            $this->Flash->error('Der Datensatz konnte nicht gelöscht werden.');
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 
     /**

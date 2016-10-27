@@ -74,7 +74,7 @@ class AttachmentsController extends AppController
      * @param array $user the current user
      * @return bool
      */
-    public function isAuthorized($user)
+    public function isAuthorized($user = null)
     {
         return is_array($user);
     }
