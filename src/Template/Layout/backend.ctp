@@ -87,7 +87,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bewerber <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><?= $this->Html->link(__('show'), ['controller' => 'candidate', 'action' => 'index', 'prefix' => 'backend/administration'])?></li>
-                                <li><?= $this->Html->link(__('add'), ['controller' => 'candidate', 'action' => 'add', 'prefix' => 'backend/administration'])?></li>
                             </ul>
                         </li>
                         <li class="dropdown">

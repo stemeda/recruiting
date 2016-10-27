@@ -5,13 +5,13 @@
     <thead>
         <tr>
             <th><?= $this->Paginator->sort('id'); ?></th>
-            <th><?= $this->Paginator->sort('username'); ?></th>
-            <th><?= $this->Paginator->sort('firstname'); ?></th>
-            <th><?= $this->Paginator->sort('surname'); ?></th>
-            <th><?= $this->Paginator->sort('email'); ?></th>
-            <th><?= $this->Paginator->sort('type'); ?></th>
-            <th><?= $this->Paginator->sort('created'); ?></th>
-            <th><?= $this->Paginator->sort('modified'); ?></th>
+            <th><?= $this->Paginator->sort('username', 'Benutzername'); ?></th>
+            <th><?= $this->Paginator->sort('firstname', 'Vorname'); ?></th>
+            <th><?= $this->Paginator->sort('surname', 'Nachname'); ?></th>
+            <th><?= $this->Paginator->sort('email', 'E-Mail'); ?></th>
+            <th><?= $this->Paginator->sort('type', 'Typ'); ?></th>
+            <th><?= $this->Paginator->sort('created', 'Erstellt am'); ?></th>
+            <th><?= $this->Paginator->sort('modified', 'Bearbeitet am'); ?></th>
             <th class="actions"><?= 'Aktionen'; ?></th>
         </tr>
     </thead>

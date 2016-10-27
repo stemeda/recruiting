@@ -64,7 +64,7 @@ class CandidateDescriptionsTable extends Table
                     'field' => ['name'],
                     'filterEmpty' => true
                 ])
-                ->add('multiple', 'Search.Boolean', [
+                ->add('Mehrfachauswahl', 'Search.Boolean', [
                     'field' => 'multiple',
                     'filterEmpty' => true
                 ]);

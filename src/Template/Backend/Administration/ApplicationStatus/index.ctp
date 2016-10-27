@@ -13,7 +13,7 @@ $this->start('tb_actions');
         <tr>
             <th><?= $this->Paginator->sort('id'); ?></th>
             <th><?= $this->Paginator->sort('name'); ?></th>
-            <th><?= $this->Paginator->sort('closes_application '); ?></th>
+            <th><?= $this->Paginator->sort('closes_application', 'Beendet Bewerbung'); ?></th>
             <th><?= $this->Paginator->sort('created'); ?></th>
             <th><?= $this->Paginator->sort('modified'); ?></th>
             <th class="actions">Aktionen</th>

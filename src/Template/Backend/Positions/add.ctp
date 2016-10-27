@@ -5,7 +5,7 @@
     <?= $this->Form->input('name'); ?>
     <?= $this->Form->textarea('description'); ?>
     <?= $this->Form->input('awailable_from'); ?>
-    <?= $this->Form->input('awailable_until'); ?>
+    <?= $this->Form->input('awailable_until', ['label' => 'Wählbar bis']); ?>
     <?= $this->Form->input('active'); ?>
     Kandidatenbeschreibungen:
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

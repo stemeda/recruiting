@@ -1,5 +1,6 @@
 <?php
 use App\Model\Entity\User;
+use Cake\Core\Configure;
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,33 @@ use App\Model\Entity\User;
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
+
+        <?php
+        if (Configure::read('settings.seo.author') !== '') {
+            echo '<meta name="author" content="' . Configure::read('settings.seo.author') . '">';
+        }
+        if (Configure::read('settings.seo.title') !== '') {
+            echo '<meta property="og:title" content="' . Configure::read('settings.seo.title') . '" />';
+            echo '<meta property="og:site_name" content="' . Configure::read('settings.seo.title') . '" />';
+            echo '<meta name="DCTERMS.title" content="' . Configure::read('settings.seo.title') . '">';
+        }
+        if (Configure::read('settings.seo.description') !== '') {
+            echo '<meta name="description" content="' . Configure::read('settings.seo.description') . '">';
+        }
+        if (Configure::read('settings.seo.copyright') !== '') {
+            echo '<meta name="copyright" content="' . Configure::read('settings.seo.copyright') . '">';
+        }
+        if (Configure::read('settings.seo.geo.position') !== '') {
+            echo '<meta name="ICBM" content="' . Configure::read('settings.seo.geo.position') . '">';
+            echo '<meta name="geo.position" content="' . Configure::read('settings.seo.geo.position') . '">';
+        }
+        if (Configure::read('settings.seo.geo.region') !== '') {
+            echo '<meta name="geo.region" content="' . Configure::read('settings.seo.geo.region') . '">';
+        }
+        if (Configure::read('settings.seo.geo.placename') !== '') {
+            echo '<meta name="geo.placename" content="' . Configure::read('settings.seo.geo.placename') . '">';
+        }
+        ?>
 
         <?= $this->CKEditor->loadJs(); ?>
     </head>
