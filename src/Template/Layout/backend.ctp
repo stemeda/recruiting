@@ -62,9 +62,6 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <?php if (isset($userSession) && is_array($userSession) && isset($userSession['type']) && ($userSession['type'] === 'admin' || $userSession['type'] === 'recruiter')): ?>
                     <ul class="nav navbar-nav">
-
-                        <li class="active"><a href="#">Settings</a></li>
-                        <li><a href="#">Link</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stellen <span class="caret"></span></a>
                             <ul class="dropdown-menu">
