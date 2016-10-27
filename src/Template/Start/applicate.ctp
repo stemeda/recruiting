@@ -24,12 +24,19 @@
         </div>
         <div class="panel-body">
             <?php
-            foreach ($candidate->candidate->candidates_candidate_description_values as $candidatesCandidateDescriptionValue) {
-                debug($candidatesCandidateDescriptionValue);
-                debug($candidateDescription);
+            $found = false;
+            foreach ($candidate->candidate->candidates_candidate_description_values as $existingCandidatesCandidateDescriptionValue) {
+                $existingId = $existingCandidatesCandidateDescriptionValue->candidate_description_value->candidate_description->id;
+                $currentId = $candidateDescription->id;
+                if ($existingId === $currentId) {
+                    echo $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key, 'existing' => $existingCandidatesCandidateDescriptionValue]);
+                    $found = true;
+                }
+            }
+            if (!$found) {
+                echo $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key]);
             }
             ?>
-            <?= $this->element('candidate_description_view', ['candidateDescription' => $candidateDescription, 'number' => $key, 'candidate' => $candidate->candidate]) ?>
         </div>
     </div>
 <?php endforeach; ?>
