@@ -53,6 +53,7 @@ use App\Model\Entity\User;
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <?php if (User::checkCandidate($userSession)): ?>
                         <ul class="nav navbar-nav">
+                            <li><?= $this->Html->link('Stellenanzeigen', ['controller' => 'start', 'action' => 'index'])?></li>
                             <li><?= $this->Html->link('Meine Bewerbungen', ['controller' => 'start', 'action' => 'open_applications'])?></li>
                         </ul>
                     <?php endif; ?>

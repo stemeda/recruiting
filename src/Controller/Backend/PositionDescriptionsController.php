@@ -79,7 +79,7 @@ class PositionDescriptionsController extends BackendController
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         $this->set(compact('positionDescription'));
@@ -116,7 +116,7 @@ class PositionDescriptionsController extends BackendController
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         $this->set(compact('positionDescription'));
@@ -138,9 +138,9 @@ class PositionDescriptionsController extends BackendController
             'contain' => ['PositionDescriptionValues', 'PositionDescriptionExtras']
         ]);
         if ($this->PositionDescriptions->delete($positionDescription)) {
-            $this->Flash->success(__('The position has been deleted.'));
+            $this->Flash->success('Der Datensatz wurde gelöscht.');
         } else {
-            $this->Flash->error(__('The position could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Datensatz konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

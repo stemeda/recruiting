@@ -47,7 +47,7 @@ class PositionsController extends BackendController
                 return $this->redirect(['action' => 'index']);
             } else {
                 debug($position);
-                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
@@ -189,7 +189,7 @@ class PositionsController extends BackendController
                 return $this->redirect(['action' => 'index']);
             } else {
                 debug($position);
-                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
@@ -225,7 +225,7 @@ class PositionsController extends BackendController
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The position could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         //$candidateDescriptionValues = $this->Positions->CandidateDescriptionValues->find('list', ['limit' => 200]);
@@ -247,9 +247,9 @@ class PositionsController extends BackendController
         $this->request->allowMethod(['post', 'delete']);
         $position = $this->Positions->get($id);
         if ($this->Positions->delete($position)) {
-            $this->Flash->success(__('The position has been deleted.'));
+            $this->Flash->success('Der Datensatz wurde gelöscht.');
         } else {
-            $this->Flash->error(__('The position could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Datensatz konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

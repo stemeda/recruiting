@@ -67,7 +67,7 @@
                     <td><?= h($candidateDescriptionValues->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'view', $candidateDescriptionValues->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'edit', $candidateDescriptionValues->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'edit', $candidateDescriptionValues->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
                         <?= $this->Form->postLink('', ['controller' => 'CandidateDescriptionValues', 'action' => 'delete', $candidateDescriptionValues->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidateDescriptionValues->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
                     </td>
                 </tr>
@@ -105,7 +105,7 @@
                     <td><?= h($candidateDescriptionValues->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'view', $candidateDescriptionValues->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'edit', $candidateDescriptionValues->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                        <?= $this->Html->link('', ['controller' => 'CandidateDescriptionValues', 'action' => 'edit', $candidateDescriptionValues->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
                         <?= $this->Form->postLink('', ['controller' => 'CandidateDescriptionValues', 'action' => 'delete', $candidateDescriptionValues->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidateDescriptionValues->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
                     </td>
                 </tr>

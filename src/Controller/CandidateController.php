@@ -103,7 +103,7 @@ class CandidateController extends AppController
 
                     return $this->redirect(['action' => 'emailInfo']);
                 } else {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
                 }
             } else {
                 $this->Flash->error('Sie müssen den Datenschutzbestimmungen zustimmen!');

@@ -34,7 +34,7 @@
             <td><?= h($candidateDescription->created) ?></td>
             <td class="actions">
                 <?= $this->Html->link('', ['action' => 'view', $candidateDescription->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                <?= $this->Html->link('', ['action' => 'edit', $candidateDescription->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                <?= $this->Html->link('', ['action' => 'edit', $candidateDescription->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
                 <?= $this->Form->postLink('', ['action' => 'delete', $candidateDescription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidateDescription->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
             </td>
         </tr>

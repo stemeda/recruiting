@@ -51,7 +51,7 @@ Router::prefix('backend', function (RouteBuilder $routes) {
         $routes->fallbacks('DashedRoute');
     });
 
-    $routes->connect('/', ['controller' => 'Start', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Positions', 'action' => 'index']);
     $routes->connect('/login', ['controller' => 'User', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'User', 'action' => 'logout']);
 

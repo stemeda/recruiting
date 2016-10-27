@@ -116,7 +116,7 @@ class CandidateDescriptionsController extends BackendController
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
+                $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
         $this->set(compact('candidateDescription'));
@@ -138,9 +138,9 @@ class CandidateDescriptionsController extends BackendController
             'contain' => ['CandidateDescriptionValues', 'CandidateDescriptionExtras']
         ]);
         if ($this->CandidateDescriptions->delete($candidateDescription)) {
-            $this->Flash->success(__('The candidate has been deleted.'));
+            $this->Flash->success('Der Datensatz wurde gelöscht.');
         } else {
-            $this->Flash->error(__('The candidate could not be deleted. Please, try again.'));
+            $this->Flash->error('Der Datensatz konnte nicht gelöscht werden.');
         }
 
         return $this->redirect(['action' => 'index']);

@@ -2,15 +2,16 @@
 <?= $this->Form->create($candidate, ['type' => 'file', 'novalidate' => true]) ?>
 <?= $this->Form->hidden('id') ?>
 <?= $this->Form->input('candidate.applications.0.positions_id', ['value' => $position->id, 'type' => 'hidden']) ?>
-<?= $this->Form->input('firstname') ?>
-<?= $this->Form->input('surname') ?>
-<?= $this->Form->input('email') ?>
-<?= $this->Form->input('candidate.street') ?>
-<?= $this->Form->input('candidate.zip') ?>
-<?= $this->Form->input('candidate.city') ?>
-<?= $this->Form->input('candidate.mobile') ?>
-<?= $this->Form->input('candidate.phone') ?>
-<?= $this->Form->input('candidate.applications.0.earliest_start', ['type' => 'date']) ?>
+<?= $this->Form->input('firstname', ['label' => 'Vorname']) ?>
+<?= $this->Form->input('surname', ['label' => 'Nachname']) ?>
+<?= $this->Form->input('email', ['label' => 'E-Mail']) ?>
+<?= $this->Form->input('candidate.street', ['label' => 'Straße']) ?>
+<?= $this->Form->input('candidate.zip', ['label' => 'PLZ']) ?>
+<?= $this->Form->input('candidate.city', ['label' => 'Ort']) ?>
+<?= $this->Form->input('candidate.mobile', ['label' => 'Mobiltelefon']) ?>
+<?= $this->Form->input('candidate.phone', ['label' => 'Festnetz']) ?>
+<?= $this->Form->input('candidate.applications.0.earliest_start', ['type' => 'text', 'label' => 'Frühester Start am', 'class' => 'addDatePicker']) ?>
+<?= $this->Form->input('candidate.applications.0.minimal_pay', ['type' => 'text', 'label' => 'Mindestgehalt in € pro Jahr']) ?>
 
 <?php foreach ($candidateDescriptions as $key => $candidateDescription): ?>
     <div class="panel panel-default">
@@ -69,3 +70,10 @@ echo $this->element(
 <?= $this->Form->button('Speichern') ?>
 <?= $this->Form->end() ?>
 
+ <script type="text/javascript">
+     $(function () {
+         $('.addDatePicker').datetimepicker({
+             format: 'DD.MM.YYYY'
+         });
+     });
+ </script>

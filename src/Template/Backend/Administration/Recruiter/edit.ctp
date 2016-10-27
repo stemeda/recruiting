@@ -32,7 +32,7 @@ $this->end();
 ?>
 <?= $this->Form->create($user); ?>
 <fieldset>
-    <legend><?= __('Edit {0}', ['User']) ?></legend>
+    <legend><?= 'Bearbeiten' ?></legend>
     <?php
     echo $this->Form->input('username');
     echo $this->Form->input('firstname');
