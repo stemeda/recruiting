@@ -30,7 +30,7 @@ class CandidateController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'logout', 'register', 'emailInfo', 'email']);
+        $this->Auth->allow(['login', 'logout', 'register', 'emailInfo', 'email', 'datasecurity']);
     }
 
     /**
@@ -81,28 +81,32 @@ class CandidateController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $userData = $this->request->data;
-            $hashValue = Security::randomBytes(100) . php_uname() . microtime(true);
-            $key = (string)hash('sha256', $hashValue);
-            $userData['type'] = 'candidate';
-            $userData['active'] = false;
-            $userData['open_registration'] = [];
-            $userData['open_registration']['valid_until'] = (new Time())->addDay(5);
-            $userData['open_registration']['validate_key'] = $key;
-            $userData['candidate'] = [];
-            $userData['candidate']['zip'] = '';
-            $user = $this->Users->patchEntity($user, $userData);
-            if ($this->Users->save($user, ['associated' => ['OpenRegistrations', 'Candidates']])) {
-                $email = new Email();
-                $t = $email->template('register', 'default')
-                        ->emailFormat('both')
-                        ->to($user->email)
-                        ->viewVars(['key' => $key])
-                        ->subject('Registrierung Bewerbung')
-                        ->send();
+            if (isset($userData['accept_datasecurity']) && in_array($userData['accept_datasecurity'], [1, '1', true, 'on', 'ON'])) {
+                $hashValue = Security::randomBytes(100) . php_uname() . microtime(true);
+                $key = (string)hash('sha256', $hashValue);
+                $userData['type'] = 'candidate';
+                $userData['active'] = false;
+                $userData['open_registration'] = [];
+                $userData['open_registration']['valid_until'] = (new Time())->addDay(5);
+                $userData['open_registration']['validate_key'] = $key;
+                $userData['candidate'] = [];
+                $userData['candidate']['zip'] = '';
+                $user = $this->Users->patchEntity($user, $userData);
+                if ($this->Users->save($user, ['associated' => ['OpenRegistrations', 'Candidates']])) {
+                    $email = new Email();
+                    $t = $email->template('register', 'default')
+                            ->emailFormat('both')
+                            ->to($user->email)
+                            ->viewVars(['key' => $key])
+                            ->subject('Registrierung Bewerbung')
+                            ->send();
 
-                return $this->redirect(['action' => 'emailInfo']);
+                    return $this->redirect(['action' => 'emailInfo']);
+                } else {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                }
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error('Sie müssen den Datenschutzbestimmungen zustimmen!');
             }
         }
         $this->set(compact('user'));
@@ -158,5 +162,15 @@ class CandidateController extends AppController
             }
         }
         $this->set("key", $key);
+    }
+
+    /**
+     * show data security info
+     *
+     * @author Stephan Meyer <>
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     */
+    public function datasecurity()
+    {
     }
 }
