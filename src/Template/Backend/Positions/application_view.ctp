@@ -1,4 +1,3 @@
-<?= debug($application) ?>
 <h1>Der Bewerber</h1>
 <table class="table">
     <tr>

@@ -67,6 +67,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Start', 'action' => 'index']);
     $routes->connect('/stelle/*', ['controller' => 'Start', 'action' => 'view']);
     $routes->connect('/applicate/*', ['controller' => 'Start', 'action' => 'applicate']);
+    $routes->connect('/cancel/*', ['controller' => 'Start', 'action' => 'cancel']);
     $routes->connect('/login', ['controller' => 'Candidate', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Candidate', 'action' => 'logout']);
     $routes->connect('/register', ['controller' => 'Candidate', 'action' => 'register']);

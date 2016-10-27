@@ -192,4 +192,33 @@ class StartController extends AppController
             ]);
         $this->set('applications', $applications);
     }
+
+    /**
+     * cancel a application
+     *
+     * @param int $id id of the application to cancel
+     *
+     * @return void
+     */
+    public function cancel($id = null)
+    {
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, ['contain' => ['ApplicationStatus']]);
+        if ($application->candidates_id === $this->Auth->user('candidate.id')
+            && !$application->application_status->closes_application
+        ) {
+            $data = [
+                'application_status_id' => 4,
+            ];
+            $application = $this->Applications->patchEntity($application, $data);
+            if ($this->Applications->save($application)) {
+                $this->Flash->success('Bewerbung zurückgezogen');
+            } else {
+                $this->Flash->error('Die Bewerbung konnte nicht zurückgezogen werden');
+            }
+        } else {
+            throw new \Cake\Network\Exception\MethodNotAllowedException('Wrong Candidate');
+        }
+        $this->redirect(['action' => 'openApplications']);
+    }
 }
