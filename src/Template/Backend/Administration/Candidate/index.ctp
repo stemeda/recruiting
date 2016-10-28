@@ -28,8 +28,6 @@
             <td><?= h($user->modified) ?></td>
             <td class="actions">
                 <?= $this->Html->link('', ['action' => 'view', $user->id], ['title' => 'Ansehen', 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
-                <?= $this->Html->link('', ['action' => 'edit', $user->id], ['title' => 'Bearbeiten', 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
-                <?= $this->Form->postLink('', ['action' => 'delete', $user->id], ['confirm' => 'Wirklich löschen?', 'title' => 'Löschen', 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
             </td>
         </tr>
         <?php endforeach; ?>

@@ -10,7 +10,7 @@ use Cake\Core\Configure;
  *
  * @property \App\Model\Table\UserTable $User
  */
-class SettingsController extends BackendController
+class SettingsController extends AdminController
 {
 
     /**

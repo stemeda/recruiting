@@ -52,5 +52,12 @@ class ApplicationStatusFixture extends TestFixture
             'created' => '2016-09-27 18:27:13',
             'modified' => '2016-09-27 18:27:13'
         ],
+        [
+            'id' => 2,
+            'name' => 'Lorem ipsum dolor sit amet',
+            'closes_application' => 0,
+            'created' => '2016-09-27 18:27:13',
+            'modified' => '2016-09-27 18:27:13'
+        ],
     ];
 }

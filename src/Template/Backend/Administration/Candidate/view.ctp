@@ -47,14 +47,6 @@ $this->end();
             <td><?= __('Id') ?></td>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr>
-        <tr>
-            <td><?= __('Modified') ?></td>
-            <td><?= $this->Number->format($user->modified) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Created') ?></td>
-            <td><?= h($user->created) ?></td>
-        </tr>
     </table>
 </div>
 

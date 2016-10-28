@@ -4,7 +4,7 @@ namespace App\Controller\Backend\Administration;
 
 use App\Controller\Backend\BackendController;
 
-class ApplicationStatusController extends BackendController
+class ApplicationStatusController extends AdminController
 {
 
     /**

@@ -16,7 +16,7 @@ use Less_Parser;
  * CakePHP StyleController
  * @author stephan
  */
-class StyleController extends BackendController
+class StyleController extends AdminController
 {
     /**
      * display input form, save data to config and parse less

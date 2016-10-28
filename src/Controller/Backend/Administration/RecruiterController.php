@@ -8,7 +8,7 @@ use App\Controller\Backend\BackendController;
  *
  * @property \App\Model\Table\UserTable $Users
  */
-class RecruiterController extends BackendController
+class RecruiterController extends AdminController
 {
     /**
      * Initialization hook method.
