@@ -73,15 +73,6 @@ class CandidateControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
-    /**
-     * Test register method
-     *
-     * @return void
-     */
-    public function testRegisterPost()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 
     /**
      * Test emailInfo method
@@ -90,7 +81,8 @@ class CandidateControllerTest extends IntegrationTestCase
      */
     public function testEmailInfo()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/candidate/email-info');
+        $this->assertResponseOk();
     }
 
     /**
@@ -100,7 +92,8 @@ class CandidateControllerTest extends IntegrationTestCase
      */
     public function testEmail()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/candidate/email');
+        $this->assertResponseOk();
     }
 
     /**
@@ -108,8 +101,9 @@ class CandidateControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testEmailPost()
+    public function testDatasecurity()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/candidate/datasecurity');
+        $this->assertResponseOk();
     }
 }

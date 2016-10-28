@@ -1,15 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\PositionsController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\PositionsController Test Case
+ * App\Controller\StartController Test Case
  */
-class PositionsControllerTest extends IntegrationTestCase
+class AjaxControllerTest extends IntegrationTestCase
 {
-
     /**
      * Fixtures
      *
@@ -41,48 +39,20 @@ class PositionsControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testIndex()
+    public function testLoadPositionDescriptionView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/ajax/load-position-description-view/1/1');
+        $this->assertResponseOk();
     }
 
     /**
-     * Test view method
+     * Test index method
      *
      * @return void
      */
-    public function testView()
+    public function testLoadCandidateDescriptionView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/ajax/load-candidate-description-view/1/1');
+        $this->assertResponseOk();
     }
 }
