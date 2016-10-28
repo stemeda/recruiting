@@ -227,7 +227,7 @@ class PositionDescriptionsControllerTest extends IntegrationTestCase
     public function testDelete()
     {
         $this->get('/backend/position-descriptions/delete/1');
-        $this->assertRedirect('/backend/position-descriptions');
+        $this->assertRedirect('/backend/login');
     }
 
     /**
@@ -251,7 +251,7 @@ class PositionDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/position-descriptions/delete/1');
+        $this->post('/backend/position-descriptions/delete/2');
         $this->assertRedirect('/backend/position-descriptions');
     }
 
@@ -276,7 +276,7 @@ class PositionDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/position-descriptions/delete/1');
+        $this->post('/backend/position-descriptions/delete/2');
         $this->assertRedirect('/backend/position-descriptions');
     }
 }

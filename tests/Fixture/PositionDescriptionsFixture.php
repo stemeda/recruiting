@@ -45,5 +45,12 @@ class PositionDescriptionsFixture extends TestFixture
             'created' => '2016-09-27 18:27:23',
             'modified' => '2016-09-27 18:27:23'
         ],
+        [
+            'id' => 2,
+            'name' => 'Lorem ipsum dolor sit amet',
+            'multiple' => 1,
+            'created' => '2016-09-27 18:27:23',
+            'modified' => '2016-09-27 18:27:23'
+        ],
     ];
 }

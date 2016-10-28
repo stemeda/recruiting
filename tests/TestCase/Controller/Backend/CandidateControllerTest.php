@@ -6,7 +6,7 @@ use Cake\TestSuite\IntegrationTestCase;
 /**
  * App\Controller\CandidateController Test Case
  */
-class CandidateDescriptionsControllerTest extends IntegrationTestCase
+class CandidateControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -43,7 +43,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->get('/backend/candidate-descriptions/');
+        $this->get('/backend/candidate/');
         $this->assertRedirect('/backend/login');
     }
 
@@ -68,7 +68,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/');
+        $this->get('/backend/candidate/');
         $this->assertResponseOk();
     }
 
@@ -93,8 +93,8 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/');
-        $this->assertResponseOk();
+        $this->get('/backend/candidate/');
+        $this->assertRedirect('/backend/login');
     }
 
     /**
@@ -104,7 +104,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/backend/candidate-descriptions/view/1');
+        $this->get('/backend/candidate/view/1');
         $this->assertRedirect('/backend/login');
     }
 
@@ -129,7 +129,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/view/1');
+        $this->get('/backend/candidate/view/1');
         $this->assertResponseOk();
     }
 
@@ -154,8 +154,8 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/view/1');
-        $this->assertResponseOk();
+        $this->get('/backend/candidate/view/1');
+        $this->assertRedirect('/backend/login');
     }
 
     /**
@@ -165,7 +165,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
      */
     public function testEdit()
     {
-        $this->get('/backend/candidate-descriptions/edit/1');
+        $this->get('/backend/candidate/edit/1');
         $this->assertRedirect('/backend/login');
     }
 
@@ -190,7 +190,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/edit/1');
+        $this->get('/backend/candidate/edit/1');
         $this->assertResponseOk();
     }
 
@@ -215,8 +215,8 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/backend/candidate-descriptions/edit/1');
-        $this->assertResponseOk();
+        $this->get('/backend/candidate/edit/1');
+        $this->assertRedirect('/backend/login');
     }
 
     /**
@@ -226,7 +226,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
-        $this->get('/backend/candidate-descriptions/delete/1');
+        $this->get('/backend/candidate/delete/1');
         $this->assertRedirect('/backend/login');
     }
 
@@ -251,8 +251,8 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->post('/backend/candidate-descriptions/delete/2');
-        $this->assertRedirect('/backend/candidate-descriptions');
+        $this->get('/backend/candidate/delete/1');
+        $this->assertRedirect('/backend/candidate');
     }
 
     /**
@@ -276,7 +276,7 @@ class CandidateDescriptionsControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->post('/backend/candidate-descriptions/delete/2');
-        $this->assertRedirect('/backend/candidate-descriptions');
+        $this->get('/backend/candidate/delete/1');
+        $this->assertRedirect('/backend/login');
     }
 }
