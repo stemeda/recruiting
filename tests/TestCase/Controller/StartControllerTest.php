@@ -188,9 +188,7 @@ class StartControllerTest extends IntegrationTestCase
                 ],
             ],
         ]);
-        $this->get('/cancel/1');  
-
+        $this->get('/cancel/1');
         $this->assertRedirect('/start/open-applications');
-
     }
 }
