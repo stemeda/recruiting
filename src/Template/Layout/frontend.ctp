@@ -83,6 +83,7 @@ use Cake\Core\Configure;
                         <ul class="nav navbar-nav">
                             <li><?= $this->Html->link('Stellenanzeigen', ['controller' => 'start', 'action' => 'index'])?></li>
                             <li><?= $this->Html->link('Meine Bewerbungen', ['controller' => 'start', 'action' => 'open_applications'])?></li>
+                            <li><?= $this->Form->postLink('Konto löschen', ['controller' => 'candidate', 'action' => 'delete'], ['confirm' => 'Wollen Sie ihr Benutzerkonto wirklich löschen? Alle Daten - auch die offenen oder geschlossenen Bewerbungen - werden unwiderruflisch gelöscht!']);?></li>
                         </ul>
                     <?php endif; ?>
                     <ul class="nav navbar-nav navbar-right">

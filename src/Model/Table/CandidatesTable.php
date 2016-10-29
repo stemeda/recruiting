@@ -48,17 +48,21 @@ class CandidatesTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->belongsToMany('CandidateDescriptionValues', [
-            'foreignKey' => 'candidate_id',
+            'foreignKey' => 'candidates_id',
             'targetForeignKey' => 'candidate_description_value_id',
             'joinTable' => 'candidates_candidate_description_values'
         ]);
         $this->hasMany('CandidatesCandidateDescriptionValues', [
             'foreignKey' => 'candidates_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Applications', [
             'foreignKey' => 'candidates_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 

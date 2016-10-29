@@ -173,4 +173,28 @@ class CandidateController extends AppController
     public function datasecurity()
     {
     }
+
+    /**
+     * delete own candidate
+     *
+     * @author Stephan Meyer <>
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     */
+    public function delete()
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $userId = $this->Auth->user('id');
+        $userTable = \Cake\ORM\TableRegistry::get('Users');
+        $user = $userTable->get($userId);
+        $success = $userTable->delete($user, ['dependent' => true, 'cascadeCallbacks' => true]);
+        if ($success) {
+            $this->Flash->success('Ihr Konto mit allen Daten wurde gelöscht!');
+
+            return $this->redirect($this->Auth->logout());
+        } else {
+            $this->Flash->error('Ihr Konto konnte nicht gelöscht werden!');
+
+            return $this->redirect('/');
+        }
+    }
 }

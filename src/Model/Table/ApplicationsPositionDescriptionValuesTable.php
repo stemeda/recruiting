@@ -56,7 +56,9 @@ class ApplicationsPositionDescriptionValuesTable extends Table
         ]);
         $this->hasMany('ApplsPosDesValuesPosDesExtras', [
             'foreignKey' => 'applications_position_description_values_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 

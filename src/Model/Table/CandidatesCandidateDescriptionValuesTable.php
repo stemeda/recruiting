@@ -51,7 +51,9 @@ class CandidatesCandidateDescriptionValuesTable extends Table
         ]);
         $this->hasMany('CansCanDesValuesCanDesExtras', [
             'foreignKey' => 'candidates_candidate_description_values_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 

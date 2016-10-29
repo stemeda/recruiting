@@ -45,11 +45,15 @@ class UsersTable extends Table
 
         $this->hasOne('OpenRegistrations', [
             'foreignKey' => 'user_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasOne('Candidates', [
             'foreignKey' => 'user_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
 
         // Setup search filter using search manager

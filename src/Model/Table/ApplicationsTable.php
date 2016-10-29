@@ -60,12 +60,16 @@ class ApplicationsTable extends Table
         ]);
         $this->hasMany('ApplicationsPositionDescriptionValues', [
             'foreignKey' => 'applications_id',
-            'joinType' => 'LEFT'
+            'joinType' => 'LEFT',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('PositionDescriptionValues', [
             'foreignKey' => 'applications_id',
             'targetForeignKey' => 'position_description_value_id',
-            'joinTable' => 'applications_position_description_values'
+            'joinTable' => 'applications_position_description_values',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
