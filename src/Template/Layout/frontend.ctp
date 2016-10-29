@@ -16,6 +16,7 @@ use Cake\Core\Configure;
         <?= $this->Html->css('frontend/bootstrap.css') ?>
         <?= $this->Html->css('bootstrap-datetimepicker.min.css') ?>
         <?= $this->Html->css('backend.css') ?>
+        <?= $this->Html->css('footer.css') ?>
         <?= $this->Html->css('/attachments/css/FileUpload.css') ?>
 
         <?= $this->Html->script('jquery.min.js') ?>
@@ -120,5 +121,10 @@ use Cake\Core\Configure;
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <a href="./attachments/candidate.pdf" title="Anleitung">Anleitung</a>
+            </div>
+        </footer>
     </body>
 </html>

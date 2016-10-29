@@ -25,6 +25,7 @@
         <?= $this->Html->css('bootstrap-theme.min.css') ?>
         <?= $this->Html->css('bootstrap-datetimepicker.min.css') ?>
         <?= $this->Html->css('backend.css') ?>
+        <?= $this->Html->css('footer.css') ?>
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
@@ -122,5 +123,15 @@
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="pull-right">
+                    <?php echo $this->Html->link('Anleitung Administrator', '/attachments/admin.pdf');?>
+                </div>
+                <div class="pull-left">
+                    <?php echo $this->Html->link('Anleitung Rekruter', '/attachments/recruiter.pdf');?>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
