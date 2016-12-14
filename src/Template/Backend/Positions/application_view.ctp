@@ -55,8 +55,16 @@ use Cake\I18n\Number;
                         <dd>
                             <?php
                             switch ($extra->candidate_description_extra->type) {
+                                case 'text':
                                 case 'date':
                                     echo $extra->value;
+                                    break;
+                                case 'bool':
+                                    echo $extra->value === '0' ? 'Nein' : 'Ja';
+                                    break;
+                                case 'checkbox':
+                                    $settings = json_decode($extra->candidate_description_extra->settings);
+                                    echo $settings[$extra->value]->value;
                                     break;
                                 default:
                                     break;
@@ -85,8 +93,16 @@ use Cake\I18n\Number;
                         <dd>
                             <?php
                             switch ($extra->position_description_extra->type) {
+                                case 'text':
                                 case 'date':
                                     echo $extra->value;
+                                    break;
+                                case 'bool':
+                                    echo $extra->value === '0' ? 'Nein' : 'Ja';
+                                    break;
+                                case 'checkbox':
+                                    $settings = json_decode($extra->position_description_extra->settings);
+                                    echo $settings[$extra->value]->value;
                                     break;
                                 default:
                                     break;
