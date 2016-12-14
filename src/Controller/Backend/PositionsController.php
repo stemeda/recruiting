@@ -161,7 +161,6 @@ class PositionsController extends BackendController
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                debug($position);
                 $this->Flash->error('Der Datensatz konnte nicht gespeichert werden. Bitte versucen Sie es erneut.');
             }
         }
@@ -190,8 +189,8 @@ class PositionsController extends BackendController
                 ]
             ]
         );
-        if ($this->request->is('post')) {
-            $position = $this->Positions->patchEntity($position, $this->request->data);
+        if ($this->request->is(['post','put'])) {
+            $position = $this->Positions->patchEntity($position, $this->request->data, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']]);
 
             if ($this->Positions->save($position, ['associated' => ['PositionsPositionDescriptionValues', 'PositionsCandidateDescriptionValues']])) {
                 $this->Flash->success('Der Datensatz wurde gespeichert.');

@@ -31,10 +31,21 @@
                         <tbody>
                         <?php foreach ($description->candidate_description_values as $valueKey => $value): ?>
                             <?=$this->Form->input('positions_candidate_description_values.' . $value->id . '.candidate_description_values_id', ['value' => $value->id, 'type' => 'hidden'])?>
+                            <?php
+                            $checked = false;
+                            $importance = '0';
+                            foreach ($position->positions_candidate_description_values as $existingValue) {
+                                if ($existingValue->candidate_description_values_id == $value->id) {
+                                    $checked = $existingValue->needed;
+                                    $importance = $existingValue->importance;
+                                    echo $this->Form->input('positions_candidate_description_values.' . $value->id . '.id', ['value' => $existingValue->id, 'type' => 'hidden']);
+                                }
+                            }
+                            ?>
                             <tr>
                                 <td><?=$value->name?></td>
-                                <td><?=$this->Form->checkbox('positions_candidate_description_values.' . $value->id . '.needed');?></td>
-                                <td><?=$this->Form->input('positions_candidate_description_values.' . $value->id . '.importance', ['type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'value' => 0, 'label' => false]);?></td>
+                                <td><?=$this->Form->checkbox('positions_candidate_description_values.' . $value->id . '.needed', ['checked' => $checked]);?></td>
+                                <td><?=$this->Form->input('positions_candidate_description_values.' . $value->id . '.importance', ['value' => $importance, 'type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'label' => false]);?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -71,10 +82,22 @@
                         <tbody>
                         <?php foreach ($description->position_description_values as $valueKey => $value): ?>
                             <?=$this->Form->input('positions_position_description_values.' . $value->id . '.positions_description_values_id', ['value' => $value->id, 'type' => 'hidden'])?>
+
+                            <?php
+                            $checked = false;
+                            $importance = '0';
+                            foreach ($position->positions_position_description_values as $existingValue) {
+                                if ($existingValue->positions_description_values_id == $value->id) {
+                                    $checked = $existingValue->needed;
+                                    $importance = $existingValue->importance;
+                                    echo $this->Form->input('positions_position_description_values.' . $value->id . '.id', ['value' => $existingValue->id, 'type' => 'hidden']);
+                                }
+                            }
+                            ?>
                             <tr>
                                 <td><?=$value->name?></td>
-                                <td><?=$this->Form->checkbox('positions_position_description_values.' . $value->id . '.needed');?></td>
-                                <td><?=$this->Form->input('positions_position_description_values.' . $value->id . '.importance', ['type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'value' => 0, 'label' => false]);?></td>
+                                <td><?=$this->Form->checkbox('positions_position_description_values.' . $value->id . '.needed', ['checked' => $checked]);?></td>
+                                <td><?=$this->Form->input('positions_position_description_values.' . $value->id . '.importance', ['value' => $importance, 'type' => 'number', 'min' => 0, 'max' => 100, 'step' => 1, 'label' => false]);?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -87,6 +110,5 @@
 
 <?= $this->CKEditor->replace('description'); ?>
 </fieldset>
-<?= $this->Form->button(__("Add")); ?>
+<?= $this->Form->button("Speichern"); ?>
 <?= $this->Form->end() ?>
-<?=debug($position);?>
